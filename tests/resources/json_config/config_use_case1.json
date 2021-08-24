@@ -1,0 +1,10 @@
+{
+    "start_date": "20200402",
+    "end_date": "20210420",
+    "min_incidence_angle": 20,
+    "max_incidence_angle": 21,
+    "temporal_resolution": 1,
+    "coregistered": true,
+    "space_overlap": true,
+    "temporal_overlap": true
+}
