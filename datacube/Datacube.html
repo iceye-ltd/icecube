@@ -1,0 +1,1338 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Manipulate coregistered ICEYE SAR Image Stacks in Python">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+    
+    
+      
+        <title>Datacube - ICEcube Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="green">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#datacube" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="ICEcube Documentation" class="md-header__button md-logo" aria-label="ICEcube Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ICEcube Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datacube
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/iceye-ltd/icecube/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iceye-ltd/icecube
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="ICEcube Documentation" class="md-nav__button md-logo" aria-label="ICEcube Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    ICEcube Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/iceye-ltd/icecube/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iceye-ltd/icecube
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        ICEcube Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ICEcube Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          ICEcube Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/Ex1_GRD_input_output.html" class="md-nav__link">
+        Ex 1 - GRD Datacube I/O
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/Ex2_SLC_input_output.html" class="md-nav__link">
+        Ex 2 - SLC Datacube I/O
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/Ex3_Labels.html" class="md-nav__link">
+        Ex 3 - Training Labels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/Ex4_Datacube.html" class="md-nav__link">
+        Ex 4 - Datacube
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/Ex5_Datacube_ML.html" class="md-nav__link">
+        Ex 5 - Datacube for ML
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Implementation Details
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Implementation Details" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Details
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Datacube
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Datacube.html" class="md-nav__link md-nav__link--active">
+        Datacube
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube-methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_all_products" class="md-nav__link">
+    get_all_products()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_data_variables" class="md-nav__link">
+    get_data_variables()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_dimensions" class="md-nav__link">
+    get_dimensions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_index_values" class="md-nav__link">
+    get_index_values()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_metadata_by_product" class="md-nav__link">
+    get_metadata_by_product()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_product_index" class="md-nav__link">
+    get_product_index()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_product_values" class="md-nav__link">
+    get_product_values()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_xrarray" class="md-nav__link">
+    get_xrarray()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_xrarray_metadata" class="md-nav__link">
+    get_xrarray_metadata()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_xrdataset_metadata" class="md-nav__link">
+    get_xrdataset_metadata()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.merge_xrdatasets" class="md-nav__link">
+    merge_xrdatasets()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.read_cube" class="md-nav__link">
+    read_cube()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.set_xrdataset" class="md-nav__link">
+    set_xrdataset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.to_file" class="md-nav__link">
+    to_file()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute.html" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube-methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_all_products" class="md-nav__link">
+    get_all_products()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_data_variables" class="md-nav__link">
+    get_data_variables()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_dimensions" class="md-nav__link">
+    get_dimensions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_index_values" class="md-nav__link">
+    get_index_values()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_metadata_by_product" class="md-nav__link">
+    get_metadata_by_product()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_product_index" class="md-nav__link">
+    get_product_index()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_product_values" class="md-nav__link">
+    get_product_values()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_xrarray" class="md-nav__link">
+    get_xrarray()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_xrarray_metadata" class="md-nav__link">
+    get_xrarray_metadata()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.get_xrdataset_metadata" class="md-nav__link">
+    get_xrdataset_metadata()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.merge_xrdatasets" class="md-nav__link">
+    merge_xrdatasets()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.read_cube" class="md-nav__link">
+    read_cube()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.set_xrdataset" class="md-nav__link">
+    set_xrdataset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.datacube.Datacube.to_file" class="md-nav__link">
+    to_file()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/iceye-ltd/icecube/edit/main/docs/datacube/Datacube.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="datacube">Datacube</h1>
+<p>This page provides implementation details on the Class <code>Datacube</code></p>
+
+
+  <div class="doc doc-object doc-class">
+
+
+    <div class="doc doc-contents first">
+
+      <p>Datacube core class that provides major functionalities to RW/access icecubes
+Please read documentation here: [http://xarray.pydata.org/en/stable/user-guide/data-structures.html]
+to understand more about data structure of xarray</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<h2 id="icecube.bin.datacube.Datacube-methods">Methods</h2>
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_all_products" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_all_products</span><span class="p">(</span><span class="n">xrarray</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Given a datavariable of xr.Dataset, returns all product-files found
+:param data_variable:</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_all_products</span><span class="p">(</span><span class="n">xrarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a datavariable of xr.Dataset, returns all product-files found</span>
+<span class="sd">    :param data_variable:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">product_files</span> <span class="o">=</span> <span class="n">xrarray</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">product_files</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="n">product_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">product_files</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">all</span><span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">product_files</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">product_files</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;product files metadata is missing from the xr.DataArray&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_data_variables" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_data_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Given xr.Dataset, return sequence of data variables</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_data_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given xr.Dataset, return sequence of data variables</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">data_vars</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_dimensions" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get dimension of the associated xr.Dataset
+returns size of xr.Dataset as dict, e.g., {"Azimuth": 100, "Range": 50}</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get dimension of the associated xr.Dataset</span>
+<span class="sd">    returns size of xr.Dataset as dict, e.g., {&quot;Azimuth&quot;: 100, &quot;Range&quot;: 50}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">sizes</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_index_values" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_index_values</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Given xr.DataArray, get_values from the index.
+:pararm product_file: name of the product file
+:pararm xrarray: xr.DataArray
+returns np.array otherwise unserializes the dict labels using pickle.loads()</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_index_values</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given xr.DataArray, get_values from the index.</span>
+<span class="sd">    :pararm product_file: name of the product file</span>
+<span class="sd">    :pararm xrarray: xr.DataArray</span>
+<span class="sd">    returns np.array otherwise unserializes the dict labels using pickle.loads()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raster_dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;int8&quot;</span><span class="p">,</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="s2">&quot;float64&quot;</span><span class="p">]</span>
+    <span class="n">assert_xrarray</span><span class="p">(</span><span class="n">xrarray</span><span class="p">)</span>
+
+    <span class="c1"># If dtype on of above, raster detected, otherwise pickl.loads() vector labels</span>
+    <span class="k">if</span> <span class="n">xrarray</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">raster_dtypes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xrarray</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">xrarray</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_metadata_by_product" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_metadata_by_product</span><span class="p">(</span><span class="n">product_file</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Given xr.DataArray, return metadata from xr.DataArray filtered by product-file
+:pararm product_file: name of the product file
+:pararm xrarray: xr.DataArray
+:returns attributes of product file inside xr.DataArray</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_metadata_by_product</span><span class="p">(</span><span class="n">product_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given xr.DataArray, return metadata from xr.DataArray filtered by product-file</span>
+<span class="sd">    :pararm product_file: name of the product file</span>
+<span class="sd">    :pararm xrarray: xr.DataArray</span>
+<span class="sd">    :returns attributes of product file inside xr.DataArray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_xrarray</span><span class="p">(</span><span class="n">xrarray</span><span class="p">)</span>
+    <span class="n">product_index</span> <span class="o">=</span> <span class="n">Datacube</span><span class="o">.</span><span class="n">get_product_index</span><span class="p">(</span><span class="n">product_file</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)</span>
+    <span class="n">product_metadata</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">metadata_seq</span> <span class="ow">in</span> <span class="n">xrarray</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">product_metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata_seq</span><span class="p">[</span><span class="n">product_index</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">product_metadata</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_product_index" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_product_index</span><span class="p">(</span><span class="n">product_file</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get index of product file from xr.DataArray
+:pararm product_file: name of the product file
+:pararm xrarray: xr.DataArray
+returns index of product file inside xr.DataArray</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_product_index</span><span class="p">(</span><span class="n">product_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get index of product file from xr.DataArray</span>
+<span class="sd">    :pararm product_file: name of the product file</span>
+<span class="sd">    :pararm xrarray: xr.DataArray</span>
+<span class="sd">    returns index of product file inside xr.DataArray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">xrarray</span><span class="o">.</span><span class="n">attrs</span> <span class="o">==</span> <span class="p">{}:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;No metadata found against provided xr.DataArray </span><span class="si">{</span><span class="n">xrarray</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">xrarray</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">product_file</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+            <span class="s2">&quot;product_file: </span><span class="si">{}</span><span class="s2"> is missing from xr.DataArray metadata&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">product_file</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_product_values" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_product_values</span><span class="p">(</span><span class="n">product_file</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Given xr.DataArray, get productfile values. The function looks for raster types, and returns
+np.array otherwise unserializes the dict labels using pickle.loads()
+:pararm product_file: name of the product file
+:pararm xrarray: xr.DataArray
+returns values associated with the product file inside xr.DataArray</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_product_values</span><span class="p">(</span><span class="n">product_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given xr.DataArray, get productfile values. The function looks for raster types, and returns</span>
+<span class="sd">    np.array otherwise unserializes the dict labels using pickle.loads()</span>
+<span class="sd">    :pararm product_file: name of the product file</span>
+<span class="sd">    :pararm xrarray: xr.DataArray</span>
+<span class="sd">    returns values associated with the product file inside xr.DataArray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">raster_dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;int8&quot;</span><span class="p">,</span> <span class="s2">&quot;uint8&quot;</span><span class="p">,</span> <span class="s2">&quot;int16&quot;</span><span class="p">,</span> <span class="s2">&quot;uint16&quot;</span><span class="p">,</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="s2">&quot;float64&quot;</span><span class="p">]</span>
+    <span class="n">assert_xrarray</span><span class="p">(</span><span class="n">xrarray</span><span class="p">)</span>
+
+    <span class="c1"># If dtype on of above, raster detected, otherwise pickl.loads() vector labels</span>
+    <span class="k">if</span> <span class="n">xrarray</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="n">raster_dtypes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="n">xrarray</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">Datacube</span><span class="o">.</span><span class="n">get_product_index</span><span class="p">(</span><span class="n">product_file</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span>
+            <span class="n">xrarray</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">Datacube</span><span class="o">.</span><span class="n">get_product_index</span><span class="p">(</span><span class="n">product_file</span><span class="p">,</span> <span class="n">xrarray</span><span class="p">)]</span>
+        <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_xrarray" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_xrarray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_variable</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get xr.DataArray given a data-variable name
+:param data_variable: name of a data variable of xr.Dataset</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_xrarray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_variable</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get xr.DataArray given a data-variable name</span>
+<span class="sd">    :param data_variable: name of a data variable of xr.Dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="n">data_variable</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_xrarray_metadata" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_xrarray_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_variable</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get metadata of xr.DataArray
+:param data_variable: name of a data variable of xr.Dataset
+:returns attributes of xr.DataArray as dict</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_xrarray_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_variable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get metadata of xr.DataArray</span>
+<span class="sd">    :param data_variable: name of a data variable of xr.Dataset</span>
+<span class="sd">    :returns attributes of xr.DataArray as dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="n">data_variable</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.get_xrdataset_metadata" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_xrdataset_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Get metadata of xr.Dataset
+:returns attributes of xr.Dataset as dict</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_xrdataset_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get metadata of xr.Dataset</span>
+<span class="sd">    :returns attributes of xr.Dataset as dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">attrs</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.merge_xrdatasets" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">merge_xrdatasets</span><span class="p">(</span><span class="n">xrdataset_seq</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s1">&#39;drop_conflicts&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Merge lists of Datasets together using xt.Dataset.merge
+:param xrdataset_seq: list of xr.Dataset
+:param combine_attrs: String indicating how to combine attrs of the objects being merged
+                      {"drop", "identical", "no_conflicts", "drop_conflicts", "override"}, default: "drop_conflicts")</p>
+<p>returns combined xr.Dataset</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">merge_xrdatasets</span><span class="p">(</span>
+    <span class="n">xrdataset_seq</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s2">&quot;drop_conflicts&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Merge lists of Datasets together using xt.Dataset.merge</span>
+<span class="sd">    :param xrdataset_seq: list of xr.Dataset</span>
+<span class="sd">    :param combine_attrs: String indicating how to combine attrs of the objects being merged</span>
+<span class="sd">                          {&quot;drop&quot;, &quot;identical&quot;, &quot;no_conflicts&quot;, &quot;drop_conflicts&quot;, &quot;override&quot;}, default: &quot;drop_conflicts&quot;)</span>
+
+<span class="sd">    returns combined xr.Dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xrdataset_merged</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xrdataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xrdataset_seq</span><span class="p">):</span>
+        <span class="n">assert_xrdataset</span><span class="p">(</span><span class="n">xrdataset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">xrdataset_merged</span> <span class="o">=</span> <span class="n">xrdataset</span>
+            <span class="k">continue</span>
+
+        <span class="n">xrdataset_merged</span> <span class="o">=</span> <span class="n">xrdataset_merged</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+            <span class="n">xrdataset</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="n">combine_attrs</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">xrdataset_merged</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.read_cube" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">read_cube</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cube_fpath</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Given a path to datacube in netCDF4 format, read the datacube and returns the instance of class
+:param ciube_fpath: path/to/cube in netCDF4 format.
+returns instance of class with updated dataset attribute</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">read_cube</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cube_fpath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a path to datacube in netCDF4 format, read the datacube and returns the instance of class</span>
+<span class="sd">    :param ciube_fpath: path/to/cube in netCDF4 format.</span>
+<span class="sd">    returns instance of class with updated dataset attribute</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">cube_fpath</span><span class="p">)</span> <span class="k">as</span> <span class="n">xds</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span> <span class="o">=</span> <span class="n">xds</span>
+
+    <span class="k">return</span> <span class="bp">self</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.set_xrdataset" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">set_xrdataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xrdataset</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>set xarray dataset as Datacube attribute
+:pararm xrdataest: update dataset attribute of the class, of type xr.Dataset</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">set_xrdataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xrdataset</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    set xarray dataset as Datacube attribute</span>
+<span class="sd">    :pararm xrdataest: update dataset attribute of the class, of type xr.Dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span> <span class="o">=</span> <span class="n">xrdataset</span>
+    <span class="k">return</span> <span class="bp">self</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.datacube.Datacube.to_file" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_fpath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;netCDF4&#39;</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>:param output_fpath: path/to/cube.nc where xr.Dataset will be saved
+:param format: File format for the resulting netCDF file,
+              can be {"NETCDF4", "NETCDF4_CLASSIC", "NETCDF3_64BIT", "NETCDF3_CLASSIC"}</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_fpath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;netCDF4&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param output_fpath: path/to/cube.nc where xr.Dataset will be saved</span>
+<span class="sd">    :param format: File format for the resulting netCDF file,</span>
+<span class="sd">                  can be {&quot;NETCDF4&quot;, &quot;NETCDF4_CLASSIC&quot;, &quot;NETCDF3_64BIT&quot;, &quot;NETCDF3_CLASSIC&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Please reformat the&quot;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">output_fpath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../examples/Ex5_Datacube_ML.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Ex 5 - Datacube for ML" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Ex 5 - Datacube for ML
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../contribute.html" class="md-footer__link md-footer__link--next" aria-label="Next: Contributing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Contributing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      
+    
+  </body>
+</html>
