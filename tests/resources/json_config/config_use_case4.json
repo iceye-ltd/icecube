@@ -1,0 +1,8 @@
+{
+    "start_date": 20210427,
+    "end_date" : 20210427,
+    "min_incidence_angle" : 20,
+    "max_incidence_angle" : 34,
+    "temporal_resolution" : 1,
+    "temporal_overlap" : 1
+}

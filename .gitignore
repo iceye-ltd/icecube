@@ -1,0 +1,21 @@
+/icecube.egg-info/
+**/__pycache__
+__pycache__/
+.
+icecube/dataset/*
+!icecube/dataset/.gitkeep
+icecube/datacubes/*
+tests/resources/labels/dummy_mask_labels.json
+*.csv
+eggs/
+.eggs/
+site/
+.idea/
+
+# test coverage
+.coverage
+htmlcov
+
+**/.ipynb_checkpoints
+**/my_awesome_datacube_**
+**cube.nc**
