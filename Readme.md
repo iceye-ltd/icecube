@@ -7,14 +7,19 @@ The datacubes stack SAR time-series images in range and azimuth and can preserve
 
 >This work is sponsored by <a href='https://philab.phi.esa.int/'>ESA Φ-Lab</a> as part of the AI4SAR initiative.
 
+<br>
+
 ## Getting Started
 You need **Python 3.8 or later** to use the ICEcube library.
 
-The installation options depend on whether you want to use the library in your Python scripts or you want to contribute to it. For more information, see [Installation](https://iceye-ltd.github.io/icecube/).
+The installation options depend on whether you want to use the library in your Python scripts or you want to contribute to it. For more information, see [Installation](https://iceye-ltd.github.io/icecube/installation).
 
 <br>
 
 ## ICEcube Examples
 To test the Jupyter notebooks and for information on how to use the library, see the  [ICEcube Documentation](https://iceye-ltd.github.io/icecube/).
 
+<br>
 
+## AI4SAR Project Updates
+For the latest project updates, see [SAR for AI Development](https://www.iceye.com/sar-data/ai4sar).
