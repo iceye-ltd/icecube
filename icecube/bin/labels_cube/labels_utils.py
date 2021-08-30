@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 """
-
-Description: The script provides functionality to ingest labels into datacube
+Description: Script contains useful utilities for labels cube
 """
 import json
 
@@ -13,7 +12,8 @@ def read_json(json_fpath):
 
 def get_labels_type(labels_fpath):
     """
-    confirm what is the type of labels : segmentation or WKT geometries .
+    confirm what is the type of labels : raster or vector
+    :param labels_fpath: path/to/labels.json containing labels
     returns "raster" or "vector"
     """
     json_labels = read_json(labels_fpath)
