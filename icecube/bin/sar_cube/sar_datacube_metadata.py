@@ -271,7 +271,9 @@ class SARDatacubeMetadata:
         sampled_metadata_df = sampled_metadata_df.reindex(datetime_range)
         sampled_metadata_df = sampled_metadata_df.reset_index()
         sampled_metadata_df = sampled_metadata_df.drop(["acquisition_date"], axis=1)
-        sampled_metadata_df = sampled_metadata_df.rename(columns={"index": "acquisition_date"})
+        sampled_metadata_df = sampled_metadata_df.rename(
+            columns={"index": "acquisition_date"}
+        )
         return sampled_metadata_df
 
     def get_master_shape(self) -> Tuple[int, int]:

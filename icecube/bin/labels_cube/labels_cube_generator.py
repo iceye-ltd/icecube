@@ -5,7 +5,6 @@ Description: The script provides functionality to ingest labels into datacube
 """
 
 import os
-from typing import Tuple
 
 from icecube.bin.labels_cube.vector_labels import VectorLabels
 from icecube.bin.labels_cube.raster_labels import RasterLabels
@@ -19,7 +18,8 @@ logger = Logger(os.path.basename(__file__))
 
 class LabelsDatacubeGenerator:
     """
-    Description here ...
+    Class wrapper on RasterLabels and VectorLabels build cls methods to abstract away specific calls
+    to Parent classes.
     """
 
     @classmethod

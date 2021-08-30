@@ -31,10 +31,6 @@ class CreateLabels:
         }
 
     def populate_labels(self, product_file: str, product_labels):
-        """
-        product_labels : list, dict or str.
-
-        """
         assert type(product_file) == str, "product_file must be of type str"
         if self.labels_type == "vector":
             self.populate_vector_labels(product_file, product_labels)
@@ -77,10 +73,6 @@ class CreateLabels:
         return False
 
     def get_product_file_index(self, product_file):
-        """
-        Get index of sequence of labels_dict where new labels must be pushed
-        """
-
         for indx, row_dict in enumerate(self.labels_collection):
             if (
                 product_file == row_dict["product_file"]
@@ -108,9 +100,6 @@ class CreateLabels:
         return {"class": obj_class, "bbox": bbox_dict}
 
     def create_instance_polygon(self, obj_class: str, polygon_points: list):
-        """
-        polygon_points: list of dict of int/float points.
-        """
         return {"class": obj_class, "polygon": polygon_points}
 
     def create_instance_point(self, obj_class: str, points: dict):
@@ -121,67 +110,3 @@ class CreateLabels:
 
     def create_instance_segmentation(self, mask_fpath: str):
         return str(mask_fpath)
-
-
-def vector_workflow():
-    import pandas as pd
-    import os
-
-    labels_fpath = "/mnt/xor/ICEYE_PACKAGES/icecube/icecube/dataset/sample_labels/pascal_labels.csv"
-    use_names = ["file_name", "xmin", "ymin", "xmax", "ymax", "class"]
-    labels_df = pd.read_csv(labels_fpath, names=use_names)
-
-    create_labels = CreateLabels("vector")
-
-    unique_products = labels_df["file_name"].unique().tolist()
-    for _, product_name in enumerate(unique_products):
-        product_df = labels_df[labels_df["file_name"] == product_name]
-        product_labels_seq = []
-
-        for _, row_df in product_df.iterrows():
-            instance_label = {
-                "xmin": row_df.iloc[1],
-                "ymin": row_df.iloc[2],
-                "xmax": row_df.iloc[3],
-                "ymax": row_df.iloc[4],
-            }
-            product_labels_seq.append(
-                create_labels.create_instance_bbox(row_df.iloc[5], instance_label)
-            )
-
-        create_labels.populate_labels(product_name, product_labels_seq)
-        create_labels.write_labels_to_json(
-            "/mnt/xor/ICEYE_PACKAGES/icecube/icecube/dataset/temp.json"
-        )
-
-
-def raster_workflow():
-    import os
-
-    raster_dir = (
-        "/mnt/xor/ICEYE_PACKAGES/icecube/icecube/dataset/test_dataset/GRD_samples"
-    )
-    masks_dir = "/mnt/xor/ICEYE_PACKAGES/icecube/icecube/dataset/test_dataset/GRD_masks"
-
-    masks_names = [
-        "ICEYE_X6_GRD_SLH_46010_20210307T123936.png",
-        "ICEYE_X6_GRD_SLH_46011_20210306T123934.png",
-    ]
-    raster_names = [
-        "ICEYE_X6_GRD_SLH_46010_20210307T123936.tif",
-        "ICEYE_X6_GRD_SLH_46011_20210306T123934.tif",
-    ]
-    masks_fpaths = [os.path.join(masks_dir, fpath) for fpath in masks_names]
-
-    save_dir = "/mnt/xor/ICEYE_PACKAGES/icecube/icecube/dataset/test_dataset"
-
-    raster_mask_dict = {}
-    for raster_name, mask_fpath in zip(raster_names, masks_fpaths):
-        raster_mask_dict[raster_name] = mask_fpath
-
-    create_labels = CreateLabels("raster")
-
-    for product_name, mask_fpath in raster_mask_dict.items():
-        seg_mask = create_labels.create_instance_segmentation(mask_fpath)
-        create_labels.populate_labels(product_name, seg_mask)
-        create_labels.write_labels_to_json(os.path.join(save_dir, "mask_labels.json"))

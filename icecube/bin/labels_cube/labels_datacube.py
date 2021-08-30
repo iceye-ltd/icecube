@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-"""
-Common utils for labels cube generation
-"""
+
 import os
 import json
 import pandas as pd
@@ -23,6 +21,10 @@ logger = Logger(os.path.basename(__file__))
 
 
 class LabelsDatacube:
+    """
+    Core class for creating labels cube
+    """
+
     def __init__(self):
         super().__init__()
         self.json_labels = None
@@ -33,8 +35,10 @@ class LabelsDatacube:
     @measure_time
     def create(self, product_type: str, labels_fpath: str, raster_dir: str):
         """
-        lorem Ipsum
-        :param raster_dir: path/to/dir where rasters are.
+        main method of class to create labels cube
+        :param product_type: type of product, GRD/SLC
+        :param labels_fpath: path/to/file.json containing icecube formatted labels
+        :param raster_dir: path/to/dir containing rasters
         """
         metadata_object = SARDatacubeMetadata(self.cube_config)
         metadata_object = metadata_object.compute_metdatadf_from_folder(
@@ -51,6 +55,10 @@ class LabelsDatacube:
         return self
 
     def create_by_metadata(self, metadata: SARDatacubeMetadata):
+        """
+        method to create labels cube using SARDatacubeMetadata object
+        :param metadata: SARDatacubeMetadata object
+        """
         list_metadata = []
         xdataset_seq = []
 
@@ -97,6 +105,7 @@ class LabelsDatacube:
         """
         Concatenate metadata as list of keys
         where keys are superset of dict keys from individual product-files
+        :param list_metadata: metadata list for each product file to be concatenated in labels cube
         """
         possible_keys = {
             k for cur_metdata in list_metadata for k, v in cur_metdata.items()
@@ -164,6 +173,10 @@ class LabelsDatacube:
         raise ValueError(f"Could not find the labels for product_file:{product_file}")
 
     def to_file(self, output_fpath: str, format="netCDF4"):
+        """
+        save labels cube to output format file
+        :param output_fpath: path/to/file.format where labels will be saved.
+        """
         if self.xrdataset is None:
             raise Exception("Empty xr.Dataset passed for writing")
 

@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 """
 
-Description: The script provides functionality to ingest labels into datacube for segemntation workflow.
+Description: The script provides functionality to ingest labels into datacube for segemntation workflow
 """
-from typing import Tuple
 import xarray as xr
 import os
 import numpy as np
 import dask
 import rasterio
-from typing import Tuple
 
 from icecube.bin.labels_cube.labels_datacube import LabelsDatacube
 from icecube.bin.config import CubeConfig
@@ -83,9 +81,6 @@ class RasterLabels(LabelsDatacube):
         return label_xdataset, get_product_metadata(product_file)
 
     def _create_xdarray_with_mask(self, mask_fpath) -> xr.DataArray:
-        """
-        The function creates an xr.DataArray from a segmentation mask
-        """
         array_dask = dask.array.squeeze(
             dask.array.from_array(
                 rasterio.open(mask_fpath).read(1),
@@ -153,7 +148,3 @@ def sample_workflow():
             cc, product_type, dummy_labels_fpath, raster_dir
         )
         # raster_cube.to_file("/path/to/ice/cube.nc")
-
-
-if __name__ == "__main__":
-    sample_workflow()
