@@ -1226,47 +1226,47 @@ For the examples below, we will use assets inside <code>tests/resources/grd_stac
     <tr>
       <th>0</th>
       <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
-      <td>6</td>
-      <td>8</td>
+      <td>1</td>
+      <td>0</td>
       <td>7</td>
-      <td>9</td>
+      <td>4</td>
       <td>rand-b</td>
     </tr>
     <tr>
       <th>1</th>
       <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
-      <td>6</td>
+      <td>1</td>
+      <td>3</td>
       <td>9</td>
-      <td>6</td>
-      <td>9</td>
-      <td>rand-a</td>
+      <td>8</td>
+      <td>rand-c</td>
     </tr>
     <tr>
       <th>2</th>
       <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
-      <td>2</td>
-      <td>9</td>
+      <td>8</td>
+      <td>4</td>
+      <td>8</td>
       <td>6</td>
-      <td>9</td>
       <td>rand-b</td>
     </tr>
     <tr>
       <th>3</th>
       <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
-      <td>6</td>
-      <td>6</td>
       <td>9</td>
+      <td>4</td>
       <td>9</td>
-      <td>rand-a</td>
+      <td>4</td>
+      <td>rand-b</td>
     </tr>
     <tr>
       <th>4</th>
       <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
-      <td>2</td>
+      <td>0</td>
+      <td>3</td>
       <td>9</td>
       <td>8</td>
-      <td>9</td>
-      <td>rand-b</td>
+      <td>rand-c</td>
     </tr>
   </tbody>
 </table>
@@ -1352,50 +1352,42 @@ For the examples below, we will use assets inside <code>tests/resources/grd_stac
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>{&#39;product_file&#39;: &#39;ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&#39;,
  &#39;labels&#39;: {&#39;objects&#39;: [{&#39;class&#39;: &#39;rand-b&#39;,
-    &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 8, &#39;xmax&#39;: 7, &#39;ymax&#39;: 9}},
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 9, &#39;xmax&#39;: 6, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 9, &#39;xmax&#39;: 6, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 6, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 9, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 7, &#39;xmax&#39;: 6, &#39;ymax&#39;: 7}}],
+    &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 0, &#39;xmax&#39;: 7, &#39;ymax&#39;: 4}},
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 3, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 4, &#39;xmax&#39;: 8, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 4, &#39;xmax&#39;: 9, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 3, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 5, &#39;xmax&#39;: 4, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 4, &#39;xmax&#39;: 6, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 7, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 8, &#39;xmax&#39;: 5, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 6, &#39;xmax&#39;: 3, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 2, &#39;xmax&#39;: 0, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 9, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 5, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
    [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 0, &#39;xmax&#39;: 9, &#39;ymax&#39;: 0}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 4, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 5, &#39;xmax&#39;: 5, &#39;ymax&#39;: 6}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 6, &#39;xmax&#39;: 9, &#39;ymax&#39;: 6}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 0, &#39;xmax&#39;: 9, &#39;ymax&#39;: 2}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 1, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 8, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 9, &#39;xmax&#39;: 1, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 4, &#39;xmax&#39;: 2, &#39;ymax&#39;: 4}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 6, &#39;xmax&#39;: 7, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 1, &#39;xmax&#39;: 9, &#39;ymax&#39;: 2}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 4, &#39;xmax&#39;: 4, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 6, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 3, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 8, &#39;xmax&#39;: 3, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 4, &#39;xmax&#39;: 5, &#39;ymax&#39;: 4}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 4, &#39;xmax&#39;: 9, &#39;ymax&#39;: 5}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 0, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 5, &#39;xmax&#39;: 8, &#39;ymax&#39;: 6}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 9, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 2, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 1, &#39;xmax&#39;: 7, &#39;ymax&#39;: 7}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 1, &#39;xmax&#39;: 3, &#39;ymax&#39;: 6}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 7, &#39;xmax&#39;: 7, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 7, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 0, &#39;xmax&#39;: 9, &#39;ymax&#39;: 1}}],
-   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 8, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 9, &#39;xmax&#39;: 6, &#39;ymax&#39;: 9}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 3, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}}],
-   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 8, &#39;xmax&#39;: 3, &#39;ymax&#39;: 8}}],
-   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 0, &#39;xmax&#39;: 6, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 8, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 1, &#39;xmax&#39;: 7, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 3, &#39;xmax&#39;: 2, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 0, &#39;xmax&#39;: 7, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 7, &#39;xmax&#39;: 8, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 7, &#39;xmax&#39;: 8, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 4, &#39;xmax&#39;: 8, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 2}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 9, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 9, &#39;xmax&#39;: 2, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 1, &#39;xmax&#39;: 5, &#39;ymax&#39;: 1}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 2, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 1, &#39;xmax&#39;: 5, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 7, &#39;xmax&#39;: 5, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 4, &#39;xmax&#39;: 5, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 1, &#39;xmax&#39;: 0, &#39;ymax&#39;: 3}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 2, &#39;xmax&#39;: 5, &#39;ymax&#39;: 2}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 9, &#39;xmax&#39;: 5, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 2, &#39;xmax&#39;: 5, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 5, &#39;xmax&#39;: 3, &#39;ymax&#39;: 8}}],
    [{&#39;class&#39;: &#39;rand-c&#39;,
-     &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 4, &#39;xmax&#39;: 4, &#39;ymax&#39;: 8}}]]}}</pre>
+     &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 9, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}]]}}</pre>
 </div>
 
 </div>
@@ -1435,15 +1427,15 @@ For this example, we will use the sample masks inside <code>tests/resources</cod
 <span class="n">raster_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;grd_stack/&quot;</span><span class="p">)</span>
 
 <span class="n">raster_names</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="n">masks_names</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="n">masks_fpaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">masks_dir</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span> <span class="k">for</span> <span class="n">fpath</span> <span class="ow">in</span> <span class="n">masks_names</span><span class="p">]</span>
@@ -1471,72 +1463,34 @@ For this example, we will use the sample masks inside <code>tests/resources</cod
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># This is how our JSON file looks like for raster labels. </span>
-<span class="c1"># `/home/user/runner/` simply indicates the local filepath of rasters</span>
-<span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;product_file&quot;</span><span class="p">:</span> <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;segmentation&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/user/runner/icecube/tests/resources/masks/ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png&quot;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;product_file&quot;</span><span class="p">:</span> <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;segmentation&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/user/runner/icecube/tests/resources/masks/ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png&quot;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;product_file&quot;</span><span class="p">:</span> <span class="s2">&quot;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;segmentation&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/user/runner/icecube/tests/resources/masks/ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">]</span>
-</pre></div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This is how our JSON file looks like for raster labels.</p>
+<p><code>/home/user/runner/</code> simply indicates the local filepath of rasters</p>
 
-        </div>
-    </div>
+<pre><code>[
+    {
+        "product_file": "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
+        "labels": {
+            "segmentation": "/home/user/runner/icecube/tests/resources/masks/ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png"
+        }
+    },
+    {
+        "product_file": "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
+        "labels": {
+            "segmentation": "/home/user/runner/icecube/tests/resources/masks/ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png"
+        }
+    },
+    {
+        "product_file": "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif",
+        "labels": {
+            "segmentation": "/home/user/runner/icecube/tests/resources/masks/ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png"
+        }
+    }
+]</code></pre>
 
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[{&#39;product_file&#39;: &#39;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif&#39;,
-  &#39;labels&#39;: {&#39;segmentation&#39;: &#39;/home/user/runner/icecube/tests/resources/masks/ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png&#39;}},
- {&#39;product_file&#39;: &#39;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&#39;,
-  &#39;labels&#39;: {&#39;segmentation&#39;: &#39;/home/user/runner/icecube/tests/resources/masks/ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png&#39;}},
- {&#39;product_file&#39;: &#39;ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&#39;,
-  &#39;labels&#39;: {&#39;segmentation&#39;: &#39;/home/user/runner/icecube/tests/resources/masks/ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png&#39;}}]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -1546,7 +1500,7 @@ For this example, we will use the sample masks inside <code>tests/resources</cod
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
@@ -1566,7 +1520,7 @@ For this example, we will use the sample masks inside <code>tests/resources</cod
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
@@ -1611,9 +1565,9 @@ For this example, we will use the sample masks inside <code>tests/resources</cod
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>08/24/2021 12:26:45 PM - sar_datacube_metadata.py - [INFO] - Building the metadata from the folder /home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack using GRD
-processing rasters for labels cube: 100%|██████████| 3/3 [00:00&lt;00:00, 2553.87it/s]
-08/24/2021 12:26:45 PM - common_utils.py - [INFO] - create running time is 0.018 seconds
+<pre>08/31/2021 10:41:30 AM - sar_datacube_metadata.py - [INFO] - Building the metadata from the folder /home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack using GRD
+processing rasters for labels cube: 100%|██████████| 3/3 [00:00&lt;00:00, 1940.31it/s]
+08/31/2021 10:41:30 AM - common_utils.py - [INFO] - create running time is 0.0261 seconds
 </pre>
 </div>
 </div>
@@ -1633,7 +1587,7 @@ For inspecting the elements of labels datacube, it is recommended to convert ass
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
@@ -1656,7 +1610,7 @@ For inspecting the elements of labels datacube, it is recommended to convert ass
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
 
 
@@ -1674,7 +1628,7 @@ For inspecting the elements of labels datacube, it is recommended to convert ass
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
@@ -1714,7 +1668,7 @@ For inspecting the elements of labels datacube, it is recommended to convert ass
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
@@ -1753,7 +1707,7 @@ For inspecting the elements of labels datacube, it is recommended to convert ass
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 

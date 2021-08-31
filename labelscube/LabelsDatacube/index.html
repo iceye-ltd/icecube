@@ -431,8 +431,22 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#icecube.bin.labels_cube.labels_datacube.LabelsDatacube.create_by_metadata" class="md-nav__link">
+    create_by_metadata()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#icecube.bin.labels_cube.labels_datacube.LabelsDatacube.get_product_labels_from_json" class="md-nav__link">
     get_product_labels_from_json()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#icecube.bin.labels_cube.labels_datacube.LabelsDatacube.to_file" class="md-nav__link">
+    to_file()
   </a>
   
 </li>
@@ -468,6 +482,7 @@
 
     <div class="doc doc-contents first">
 
+      <p>Core class for creating labels cube</p>
 
 
 
@@ -642,7 +657,8 @@
     <div class="doc doc-contents ">
 
       <p>Concatenate metadata as list of keys
-where keys are superset of dict keys from individual product-files</p>
+where keys are superset of dict keys from individual product-files
+:param list_metadata: metadata list for each product file to be concatenated in labels cube</p>
 
         <details class="quote">
           <summary>Source code in <code>icecube/bin/labels_cube/labels_datacube.py</code></summary>
@@ -650,6 +666,7 @@ where keys are superset of dict keys from individual product-files</p>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Concatenate metadata as list of keys</span>
 <span class="sd">    where keys are superset of dict keys from individual product-files</span>
+<span class="sd">    :param list_metadata: metadata list for each product file to be concatenated in labels cube</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">possible_keys</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">k</span> <span class="k">for</span> <span class="n">cur_metdata</span> <span class="ow">in</span> <span class="n">list_metadata</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">cur_metdata</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -676,6 +693,76 @@ where keys are superset of dict keys from individual product-files</p>
   </div>
 
 
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.labels_cube.labels_datacube.LabelsDatacube.create_by_metadata" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">create_by_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>method to create labels cube using SARDatacubeMetadata object
+:param metadata: SARDatacubeMetadata object</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/labels_cube/labels_datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_by_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">SARDatacubeMetadata</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    method to create labels cube using SARDatacubeMetadata object</span>
+<span class="sd">    :param metadata: SARDatacubeMetadata object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">list_metadata</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">xdataset_seq</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">df_index</span><span class="p">,</span> <span class="n">df_row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+        <span class="n">tqdm</span><span class="p">(</span>
+            <span class="n">metadata</span><span class="o">.</span><span class="n">metadata_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span>
+            <span class="n">total</span><span class="o">=</span><span class="n">metadata</span><span class="o">.</span><span class="n">get_lenght</span><span class="p">(),</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;processing rasters for labels cube&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">):</span>
+
+        <span class="c1"># We don&#39;t have image for this timestamp - we create an empty array to cover this date.</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">]):</span>
+            <span class="n">dummy_xdataset</span><span class="p">,</span> <span class="n">dummy_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_dummy_xrdataset</span><span class="p">()</span>
+            <span class="n">xdataset_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dummy_xdataset</span><span class="p">)</span>
+            <span class="n">list_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dummy_metadata</span><span class="p">)</span>
+
+        <span class="c1"># We do have images and we will fetch the relevant labels for that</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Get the full path</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Working on </span><span class="si">{</span><span class="n">df_row</span><span class="o">.</span><span class="n">product_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">product_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">])</span>
+            <span class="n">asset_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_product_labels_from_json</span><span class="p">(</span><span class="n">product_file</span><span class="p">)</span>
+
+            <span class="n">label_xdataset</span><span class="p">,</span> <span class="n">label_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_layer_xrdataset</span><span class="p">(</span>
+                <span class="n">asset_labels</span><span class="p">,</span> <span class="n">product_file</span>
+            <span class="p">)</span>
+            <span class="n">list_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_metadata</span><span class="p">)</span>
+            <span class="n">xdataset_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_xdataset</span><span class="p">)</span>
+
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="n">xdataset_seq</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">NAME_BAND</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span>
+    <span class="p">)</span>
+    <span class="n">super_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">concat_metadata</span><span class="p">(</span><span class="n">list_metadata</span><span class="p">)</span>
+
+    <span class="c1"># Update attrs for each Datavariable within the datacube</span>
+    <span class="k">for</span> <span class="n">dv</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">data_vars</span><span class="p">):</span>
+        <span class="n">ds</span><span class="p">[</span><span class="n">dv</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">super_dict</span>
+
+    <span class="k">return</span> <span class="n">ds</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
@@ -714,6 +801,39 @@ where keys are superset of dict keys from individual product-files</p>
   </div>
 
 
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="icecube.bin.labels_cube.labels_datacube.LabelsDatacube.to_file" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_fpath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;netCDF4&#39;</span><span class="p">)</span></code>
+
+
+</h3>
+
+    <div class="doc doc-contents ">
+
+      <p>save labels cube to output format file
+:param output_fpath: path/to/file.format where labels will be saved.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>icecube/bin/labels_cube/labels_datacube.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_fpath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;netCDF4&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    save labels cube to output format file</span>
+<span class="sd">    :param output_fpath: path/to/file.format where labels will be saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Empty xr.Dataset passed for writing&quot;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">output_fpath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
