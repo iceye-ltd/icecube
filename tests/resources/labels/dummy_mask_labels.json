@@ -1,0 +1,20 @@
+[
+    {
+        "product_file": "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
+        "labels": {
+            "segmentation": "/home/adupeyrat/Documents/code/icecube/tests/resources/masks/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.png"
+        }
+    },
+    {
+        "product_file": "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
+        "labels": {
+            "segmentation": "/home/adupeyrat/Documents/code/icecube/tests/resources/masks/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.png"
+        }
+    },
+    {
+        "product_file": "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.tif",
+        "labels": {
+            "segmentation": "/home/adupeyrat/Documents/code/icecube/tests/resources/masks/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.png"
+        }
+    }
+]

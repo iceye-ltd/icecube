@@ -5,7 +5,6 @@ __pycache__/
 icecube/dataset/*
 !icecube/dataset/.gitkeep
 icecube/datacubes/*
-tests/resources/labels/dummy_mask_labels.json
 *.csv
 eggs/
 .eggs/
