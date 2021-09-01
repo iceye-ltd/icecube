@@ -100,8 +100,8 @@ def test_grd_vector_labels_custom_config():
 
     dc = Datacube().read_cube(cube_save_fpath)
     labels_json = read_json(vector_labels_fpath)
-
-    assert len(dc.xrdataset[NAME_BAND]) == 6
+    
+    assert len(dc.xrdataset[NAME_BAND]) == 3
 
     all_products = dc.get_all_products(dc.get_xrarray(NAME_LABELS_BAND))
     valid_products = [
@@ -117,7 +117,6 @@ def test_grd_vector_labels_custom_config():
 
     # Make assertion on one of the NA slice values.
     dummy_cube_dict = pickle.loads(dc.xrdataset["Labels"][0].values)
-
     dummy_vec_dict = {"labels": {"objects": []}}
     assert dummy_cube_dict == dummy_vec_dict
 
