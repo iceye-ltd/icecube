@@ -47,15 +47,17 @@ class LabelsDatacube:
         )
         assert_metadata_exists(metadata_object.metadata_df)
         self.json_labels = self.read_json(labels_fpath)
-        pruned_metadata_df = self.prune_metadata_rows_for_labels(metadata_object.metadata_df)
+        pruned_metadata_df = self.prune_metadata_rows_for_labels(
+            metadata_object.metadata_df
+        )
         pruned_metadata_df = self.prune_metadata_for_temporal_gaps(pruned_metadata_df)
-                  
+
         self.mask_datatype = self.get_mask_dtype(pruned_metadata_df)
         (
             self.max_shape_azimuth,
             self.max_shape_range,
         ) = metadata_object.get_master_shape()
-        
+
         self.xrdataset = self.create_by_metadata(pruned_metadata_df)
         return self
 
@@ -133,14 +135,14 @@ class LabelsDatacube:
 
     def prune_metadata_rows_for_labels(self, metadata_df: pd.DataFrame) -> pd.DataFrame:
         """
-        A user can provide labels for some specific rasters only and not all the rows. 
+        A user can provide labels for some specific rasters only and not all the rows.
         Therefore, it is necessary to prune out fields from metadata_df.
         :param metadata_df: dataframe object containing metadata for rasters in the directory
 
         returns pd.df with pruned fields
         """
         json_products = [json_dict["product_file"] for json_dict in self.json_labels]
-        
+
         indices_to_keep = []
         for indx, row in metadata_df.iterrows():
             if pd.isnull(row["product_fpath"]):
@@ -150,18 +152,24 @@ class LabelsDatacube:
 
         return metadata_df.iloc[indices_to_keep].reset_index(drop=True)
 
-    def prune_metadata_for_temporal_gaps(self, metadata_df: pd.DataFrame) -> pd.DataFrame:
+    def prune_metadata_for_temporal_gaps(
+        self, metadata_df: pd.DataFrame
+    ) -> pd.DataFrame:
         """
         temporal_gaps lead to creating multiple NaN raster/vector labels that can be inefficient
-        w.r.t memory allocation. This is handled by retaining only a unit "NaN" label instance. 
+        w.r.t memory allocation. This is handled by retaining only a unit "NaN" label instance.
         :param metadata_df: dataframe object containing metadata for rasters in the directory
 
         returns pd.df with pruned fields
         """
-        rows_with_nan = [int(index) for index, row in metadata_df.iterrows() if row.isnull().any()]
-        
+        rows_with_nan = [
+            int(index) for index, row in metadata_df.iterrows() if row.isnull().any()
+        ]
+
         if rows_with_nan:
-            indices_to_keep = [r for r in np.arange(0, metadata_df.shape[0]) if r not in rows_with_nan]
+            indices_to_keep = [
+                r for r in np.arange(0, metadata_df.shape[0]) if r not in rows_with_nan
+            ]
             indices_to_keep.append(min(rows_with_nan))
             indices_to_keep.sort()
             return metadata_df.iloc[indices_to_keep].reset_index(drop=True)
@@ -212,9 +220,9 @@ class LabelsDatacube:
                 return raster_label["labels"]
 
         logger.debug(f"Could not find labels for product_file: {product_file}")
-        #warnings.warn(f"Could not find the labels for product_file:{product_file}")
+        # warnings.warn(f"Could not find the labels for product_file:{product_file}")
         raise ValueError(f"Could not find the labels for product_file:{product_file}")
-        #return False
+        # return False
 
     def to_file(self, output_fpath: str, format="netCDF4"):
         """

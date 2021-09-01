@@ -100,7 +100,7 @@ def test_grd_vector_labels_custom_config():
 
     dc = Datacube().read_cube(cube_save_fpath)
     labels_json = read_json(vector_labels_fpath)
-    
+
     assert len(dc.xrdataset[NAME_BAND]) == 3
 
     all_products = dc.get_all_products(dc.get_xrarray(NAME_LABELS_BAND))
