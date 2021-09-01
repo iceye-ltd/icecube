@@ -163,7 +163,7 @@ def sample_list_workflow():
                 "tests",
                 "resources",
                 "grd_stack",
-                "ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
+                "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
             )
         ),
         Path(
@@ -173,7 +173,7 @@ def sample_list_workflow():
                 "tests",
                 "resources",
                 "grd_stack",
-                "ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
+                "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
             )
         ),
     ]

@@ -5,6 +5,7 @@ site_description: Manipulate coregistered ICEYE SAR Image Stacks in Python
 repo_name: iceye-ltd/icecube
 repo_url: https://github.com/iceye-ltd/icecube
 edit_uri: edit/main/docs/
+site_url: https://iceye-ltd.github.io/icecube/
 
 theme:
   palette:
