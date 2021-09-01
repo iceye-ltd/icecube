@@ -23,5 +23,5 @@ MASK_DTYPE = "default"
 RASTER_DTYPE = "default"
 
 # Config. Variables
-DEFAULT_FILL_VALUE = np.nan
-CHUNK_SIZE = (16384, 16384)
+DEFAULT_FILL_VALUE = np.nan #can be very well replaced with 0
+CHUNK_SIZE = (4000, 2000)
