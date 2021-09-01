@@ -7,6 +7,7 @@ import xarray as xr
 import abc
 from typing import Tuple
 from tqdm import tqdm
+import numpy as np
 from icecube.utils.common_utils import (
     measure_time,
     NumpyEncoder,
@@ -46,15 +47,19 @@ class LabelsDatacube:
         )
         assert_metadata_exists(metadata_object.metadata_df)
         self.json_labels = self.read_json(labels_fpath)
-        self.mask_datatype = self.get_mask_dtype(metadata_object.metadata_df)
+        pruned_metadata_df = self.prune_metadata_rows_for_labels(metadata_object.metadata_df)
+        pruned_metadata_df = self.prune_metadata_for_temporal_gaps(pruned_metadata_df)
+                  
+        self.mask_datatype = self.get_mask_dtype(pruned_metadata_df)
         (
             self.max_shape_azimuth,
             self.max_shape_range,
         ) = metadata_object.get_master_shape()
-        self.xrdataset = self.create_by_metadata(metadata_object)
+        
+        self.xrdataset = self.create_by_metadata(pruned_metadata_df)
         return self
 
-    def create_by_metadata(self, metadata: SARDatacubeMetadata):
+    def create_by_metadata(self, metadata_df: pd.DataFrame):
         """
         method to create labels cube using SARDatacubeMetadata object
         :param metadata: SARDatacubeMetadata object
@@ -64,8 +69,8 @@ class LabelsDatacube:
 
         for i, (df_index, df_row) in enumerate(
             tqdm(
-                metadata.metadata_df.iterrows(),
-                total=metadata.get_lenght(),
+                metadata_df.iterrows(),
+                total=metadata_df.shape[0],
                 desc="processing rasters for labels cube",
             )
         ):
@@ -81,7 +86,7 @@ class LabelsDatacube:
                 # Get the full path
                 logger.debug(f"Working on {df_row.product_file}")
 
-                product_file = str(df_row["product_file"])
+                product_file = os.path.basename(df_row["product_fpath"])
                 asset_labels = self.get_product_labels_from_json(product_file)
 
                 label_xdataset, label_metadata = self.compute_layer_xrdataset(
@@ -125,6 +130,43 @@ class LabelsDatacube:
                     super_dict[cur_key].append("None")
 
         return super_dict
+
+    def prune_metadata_rows_for_labels(self, metadata_df: pd.DataFrame) -> pd.DataFrame:
+        """
+        A user can provide labels for some specific rasters only and not all the rows. 
+        Therefore, it is necessary to prune out fields from metadata_df.
+        :param metadata_df: dataframe object containing metadata for rasters in the directory
+
+        returns pd.df with pruned fields
+        """
+        json_products = [json_dict["product_file"] for json_dict in self.json_labels]
+        
+        indices_to_keep = []
+        for indx, row in metadata_df.iterrows():
+            if pd.isnull(row["product_fpath"]):
+                indices_to_keep.append(indx)
+            elif os.path.basename(row["product_fpath"]) in json_products:
+                indices_to_keep.append(indx)
+
+        return metadata_df.iloc[indices_to_keep].reset_index(drop=True)
+
+    def prune_metadata_for_temporal_gaps(self, metadata_df: pd.DataFrame) -> pd.DataFrame:
+        """
+        temporal_gaps lead to creating multiple NaN raster/vector labels that can be inefficient
+        w.r.t memory allocation. This is handled by retaining only a unit "NaN" label instance. 
+        :param metadata_df: dataframe object containing metadata for rasters in the directory
+
+        returns pd.df with pruned fields
+        """
+        rows_with_nan = [int(index) for index, row in metadata_df.iterrows() if row.isnull().any()]
+        
+        if rows_with_nan:
+            indices_to_keep = [r for r in np.arange(0, metadata_df.shape[0]) if r not in rows_with_nan]
+            indices_to_keep.append(min(rows_with_nan))
+            indices_to_keep.sort()
+            return metadata_df.iloc[indices_to_keep].reset_index(drop=True)
+        else:
+            return metadata_df
 
     def read_json(self, json_fpath):
         with open(json_fpath) as json_file:
@@ -170,7 +212,9 @@ class LabelsDatacube:
                 return raster_label["labels"]
 
         logger.debug(f"Could not find labels for product_file: {product_file}")
+        #warnings.warn(f"Could not find the labels for product_file:{product_file}")
         raise ValueError(f"Could not find the labels for product_file:{product_file}")
+        #return False
 
     def to_file(self, output_fpath: str, format="netCDF4"):
         """
