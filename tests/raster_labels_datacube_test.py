@@ -190,7 +190,7 @@ def test_grd_masks_labels_custom_config2():
 
     dc = Datacube().read_cube(cube_save_fpath)
     assert (
-        len(dc.get_all_products(dc.get_xrarray(NAME_LABELS_BAND))) == 3
+        len(dc.get_all_products(dc.get_xrarray(NAME_LABELS_BAND))) == 6
     ), "Must contain 3 products with given configuration"
     confirm_masks_values_in_cube(cube_save_fpath)
     delete_temporary_cube_dir(cube_save_dir)

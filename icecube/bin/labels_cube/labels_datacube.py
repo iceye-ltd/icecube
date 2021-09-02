@@ -47,24 +47,21 @@ class LabelsDatacube:
         )
         assert_metadata_exists(metadata_object.metadata_df)
         self.json_labels = self.read_json(labels_fpath)
-        pruned_metadata_df = self.prune_metadata_rows_for_labels(
-            metadata_object.metadata_df
-        )
-        pruned_metadata_df = self.prune_metadata_for_temporal_gaps(pruned_metadata_df)
+        metadata_df = self.replace_unlabelled_bands_by_NaNs(metadata_object.metadata_df)
 
-        self.mask_datatype = self.get_mask_dtype(pruned_metadata_df)
+        self.mask_datatype = self.get_mask_dtype(metadata_df)
         (
             self.max_shape_azimuth,
             self.max_shape_range,
         ) = metadata_object.get_master_shape()
 
-        self.xrdataset = self.create_by_metadata(pruned_metadata_df)
+        self.xrdataset = self.create_by_metadata(metadata_df)
         return self
 
     def create_by_metadata(self, metadata_df: pd.DataFrame):
         """
         method to create labels cube using SARDatacubeMetadata object
-        :param metadata: SARDatacubeMetadata object
+        :param metadata_df: dataframe object containing metadata for rasters in the directory
         """
         list_metadata = []
         xdataset_seq = []
@@ -132,6 +129,27 @@ class LabelsDatacube:
                     super_dict[cur_key].append("None")
 
         return super_dict
+
+    def replace_unlabelled_bands_by_NaNs(
+        self, metadata_df: pd.DataFrame
+    ) -> pd.DataFrame:
+        """
+        A user can only provide labels for certain bands in the cube. In such a case, all unlabelled
+        bands/rasters metadata fields are replaced with NaNs.
+        :param metadata_df: dataframe object containing metadata for rasters in the directory
+        returns pd.df with NaNs filled for unavailable rows
+        """
+        json_products = [json_dict["product_file"] for json_dict in self.json_labels]
+        for indx, row in metadata_df.iterrows():
+            if pd.isnull(row["product_file"]) or pd.isnull(row["product_fpath"]):
+                continue
+            if (
+                row["product_file"] not in json_products
+                and os.path.basename(row["product_fpath"]) not in json_products
+            ):
+                metadata_df.loc[indx, :] = np.nan
+
+        return metadata_df
 
     def prune_metadata_rows_for_labels(self, metadata_df: pd.DataFrame) -> pd.DataFrame:
         """

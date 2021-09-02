@@ -219,8 +219,9 @@ def cli():
     datacube = IceyeProcessGenerateCube.create_cube(
         args.raster_dir, cube_config_fpath, labels_fpath=args.labels_fpath
     )
-
+    print(f"Generated cube dimensions are: {datacube.get_dimensions()}")
     if args.cube_save is not None:
+        print("Writing ICEcube to disk. This may take some time, please standby ...")
         datacube.to_file(args.cube_save)
 
 
