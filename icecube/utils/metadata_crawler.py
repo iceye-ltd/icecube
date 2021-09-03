@@ -45,11 +45,13 @@ def metadata_crawler_list(raster_paths: List[str], variables):
         metadata = IO.load_ICEYE_metadata(raster_path)
         parsed_metadata = _parse_data_row(metadata, variables)
         parsed_metadata["product_fpath"] = raster_path
-        
+
         if pd.isnull(parsed_metadata["product_file"]):
             parsed_metadata["product_file"] = os.path.basename(raster_path)
-        
-        if pd.isnull(parsed_metadata["number_of_azimuth_samples"]) or pd.isnull(parsed_metadata["number_of_range_samples"]):
+
+        if pd.isnull(parsed_metadata["number_of_azimuth_samples"]) or pd.isnull(
+            parsed_metadata["number_of_range_samples"]
+        ):
             raster_shape = rasterio.open(raster_path).shape
             parsed_metadata["number_of_azimuth_samples"] = raster_shape[0]
             parsed_metadata["number_of_range_samples"] = raster_shape[1]
@@ -149,28 +151,38 @@ def _parse_data_row(metadata, variables):
     metadata_row = {}
 
     for variable in variables:
-        
+
         if variable == "incidence_center":
             try:
-                metadata_row["incidence_center"] = _parse_center_incidence_angle(metadata)
+                metadata_row["incidence_center"] = _parse_center_incidence_angle(
+                    metadata
+                )
             except:
-                warnings.warn("key: {} is missing from the metadata. Appending None.".format(variable.upper()), stacklevel=3)
+                warnings.warn(
+                    f"key: {variable.upper()} is missing from the metadata. Appending None.",
+                    stacklevel=3,
+                )
                 metadata_row["incidence_center"] = np.nan
-                
+
         elif variable == "extent":
             try:
                 metadata_row["extent"] = get_raster_extent(metadata)
             except:
-                warnings.warn("key: {} is missing from the metadata. Appending None.".format(variable.upper()), stacklevel=3)
-                metadata_row["extent"] = np.nan        
-        
+                warnings.warn(
+                    f"key: {variable.upper()} is missing from the metadata. Appending None.",
+                    stacklevel=3,
+                )
+                metadata_row["extent"] = np.nan
+
         elif variable == "acquisition_date":
             try:
                 acquisition_date, acquisition_time = _parse_acquisition_time(metadata)
                 metadata_row["acquisition_date"] = acquisition_date
                 metadata_row["acquisition_time"] = acquisition_time
             except:
-                warnings.warn("ACQUISITION_DATE/TIME is missing from the metadata.", stacklevel=3)
+                warnings.warn(
+                    "ACQUISITION_DATE/TIME is missing from the metadata.", stacklevel=3
+                )
                 metadata_row["acquisition_date"] = np.nan
                 metadata_row["acquisition_time"] = np.nan
 
@@ -181,7 +193,10 @@ def _parse_data_row(metadata, variables):
             if variable in metadata:
                 metadata_row[variable] = metadata[variable]
             else:
-                warnings.warn("key: {} is missing from the metadata. Appending None.".format(variable.upper()), stacklevel=3)
+                warnings.warn(
+                    f"key: {variable.upper()} is missing from the metadata. Appending None.",
+                    stacklevel=3,
+                )
                 metadata_row[variable] = np.nan
 
     return metadata_row

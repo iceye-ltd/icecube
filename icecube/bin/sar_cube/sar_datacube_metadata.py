@@ -124,12 +124,14 @@ class SARDatacubeMetadata:
         """
         Once metadata_df has been built, modify df rows according to the user configuration
         """
-        if not(pd.isnull(self.metadata_df["acquisition_date"]).all()):
+        if not (pd.isnull(self.metadata_df["acquisition_date"]).all()):
             self.metadata_df = self.sort_df_by_date()
             self.metadata_df = self.select_requested_dates()
-            logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
+            logger.debug(
+                f"length metadata after filter by date {len(self.metadata_df)}"
+            )
 
-        if not(pd.isnull(self.metadata_df["incidence_center"]).all()):
+        if not (pd.isnull(self.metadata_df["incidence_center"]).all()):
             self.metadata_df = self.select_requested_angles()
             logger.debug(
                 f"length metadata after filter requested angle {len(self.metadata_df)}"

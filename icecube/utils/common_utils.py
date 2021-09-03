@@ -22,11 +22,11 @@ class DirUtils:
         """
         scrape the given directory for all files or files with certain extension.
         fext: str or list of strings.
-        """    
+        """
         local_dir = os.path.join(local_dir, "")
         fpaths = []  # contains names of all images.
 
-        if fext and not(isinstance(fext, list)):
+        if fext and not (isinstance(fext, list)):
             fext = list(fext)
 
         if fext:
