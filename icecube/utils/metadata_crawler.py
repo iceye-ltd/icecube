@@ -5,8 +5,10 @@ Given directories of ICEYE raster data, crawl and scrape metadata for variables 
 
 import os
 import warnings
+import numpy as np
 import pandas as pd
 from shapely import geometry
+import rasterio
 from datetime import datetime
 from typing import List
 from icecube.utils import analytics_IO as IO
@@ -42,8 +44,15 @@ def metadata_crawler_list(raster_paths: List[str], variables):
     for indx, raster_path in enumerate(raster_paths):
         metadata = IO.load_ICEYE_metadata(raster_path)
         parsed_metadata = _parse_data_row(metadata, variables)
-        # Could not read product file using the SLC product and coregister output
         parsed_metadata["product_fpath"] = raster_path
+        
+        if pd.isnull(parsed_metadata["product_file"]):
+            parsed_metadata["product_file"] = os.path.basename(raster_path)
+        
+        if pd.isnull(parsed_metadata["number_of_azimuth_samples"]) or pd.isnull(parsed_metadata["number_of_range_samples"]):
+            raster_shape = rasterio.open(raster_path).shape
+            parsed_metadata["number_of_azimuth_samples"] = raster_shape[0]
+            parsed_metadata["number_of_range_samples"] = raster_shape[1]
 
         metadata_dicts.append(parsed_metadata)
 
@@ -125,17 +134,45 @@ def _go_through_all_subfolders(folder):
 
 
 def _parse_data_row(metadata, variables):
+    """
+    Check for following metadata keys, If not found, append None instead
+    "product_file",
+    "incidence_center",
+    "look_side",
+    "orbit_direction",
+    "extent",
+    "acquisition_date",
+    "acquisition_time",
+    "number_of_azimuth_samples",
+    "number_of_range_samples"
+    """
     metadata_row = {}
 
     for variable in variables:
+        
         if variable == "incidence_center":
-            metadata_row["incidence_center"] = _parse_center_incidence_angle(metadata)
+            try:
+                metadata_row["incidence_center"] = _parse_center_incidence_angle(metadata)
+            except:
+                warnings.warn("key: {} is missing from the metadata. Appending None.".format(variable.upper()), stacklevel=3)
+                metadata_row["incidence_center"] = np.nan
+                
         elif variable == "extent":
-            metadata_row["extent"] = get_raster_extent(metadata)
+            try:
+                metadata_row["extent"] = get_raster_extent(metadata)
+            except:
+                warnings.warn("key: {} is missing from the metadata. Appending None.".format(variable.upper()), stacklevel=3)
+                metadata_row["extent"] = np.nan        
+        
         elif variable == "acquisition_date":
-            acquisition_date, acquisition_time = _parse_acquisition_time(metadata)
-            metadata_row["acquisition_date"] = acquisition_date
-            metadata_row["acquisition_time"] = acquisition_time
+            try:
+                acquisition_date, acquisition_time = _parse_acquisition_time(metadata)
+                metadata_row["acquisition_date"] = acquisition_date
+                metadata_row["acquisition_time"] = acquisition_time
+            except:
+                warnings.warn("ACQUISITION_DATE/TIME is missing from the metadata.", stacklevel=3)
+                metadata_row["acquisition_date"] = np.nan
+                metadata_row["acquisition_time"] = np.nan
 
         elif variable == "acquisition_time":
             pass
@@ -143,6 +180,9 @@ def _parse_data_row(metadata, variables):
         else:
             if variable in metadata:
                 metadata_row[variable] = metadata[variable]
+            else:
+                warnings.warn("key: {} is missing from the metadata. Appending None.".format(variable.upper()), stacklevel=3)
+                metadata_row[variable] = np.nan
 
     return metadata_row
 

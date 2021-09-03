@@ -336,23 +336,44 @@ def read_SLC_metadata(h5_io):
     return meta_dict
 
 
+def correct_grd_metadata_key(original_key: str) -> str:
+    """
+    Change an upper case GRD key to it's SLC metadata equivalent.
+    By default this is uppercasing all keys; otherwise if the value in the
+    `special_keys` dict will be used.
+
+    Args:
+        original_key: input metadata key
+        special_keys: dictionary of special keys that require more than just lower case
+
+    Return:
+        corrected_key: corrected key name
+    """
+
+    special_keys = {
+        "POSX": "posX",
+        "POSY": "posY",
+        "POSZ": "posZ",
+        "VELX": "velX",
+        "VELY": "velY",
+        "VELZ": "velZ",
+    }
+    if original_key in special_keys:
+        corrected_key = special_keys[original_key]
+
+    else:
+        corrected_key = original_key.lower()
+
+    return corrected_key
+
+
 def read_GRD_metadata(grd_fpath):
     with rasterio.open(grd_fpath) as file:
 
         metadata = file.tags()
-
-        # For whatever reason rasterio reads the metadata fields in ALL CAPS.
-        # According to specs it should be lowercase. Change all dict fields to lower.
-        metadata = {k.lower(): v for k, v in metadata.items()}
-
-        # Well, not all of them. For example SLC still has posX, posY, velX, velY etc. Change them back.
-        metadata["posX"] = metadata.pop("posx")
-        metadata["posY"] = metadata.pop("posy")
-        metadata["posZ"] = metadata.pop("posz")
-
-        metadata["velX"] = metadata.pop("velx")
-        metadata["velY"] = metadata.pop("vely")
-        metadata["velZ"] = metadata.pop("velz")
+        metadata = {
+            correct_grd_metadata_key(key): value for key, value in metadata.items()
+        }
 
         # Also the numeric variables are output as strings. Fix it.
         metadata = _fix_GRD_metadata_datatypes(metadata, _expected_datatypes("GRD"))
@@ -364,8 +385,6 @@ def read_GRD_metadata(grd_fpath):
         # If something is missing mark it with None:
         for var_name in found_keys:
             if var_name not in expected_keys:
-                # warnings.warn('Did not find the metadata variable "%s" from the predefined dictionary of metadata fields. This is most likely due to a change in the product metadata. Replacing the entry with None.'%var_name,
-                #              RuntimeWarning)
                 metadata.update({var_name: None})
 
         metadata = _parse_GRD_RPC(metadata, file)

@@ -11,6 +11,7 @@ from pathlib import Path
 
 # Local import
 from icecube.utils.logger import Logger
+from icecube.utils.common_utils import DirUtils 
 from icecube.utils.metadata_crawler import metadata_crawler, metadata_crawler_list
 
 logger = Logger(os.path.basename(__file__))
@@ -91,6 +92,7 @@ class SARDatacubeMetadata:
             raise Exception(f"Please provide a correct input - {list_path}")
 
         ext = list_path[0].suffix
+        
         for cur_path in list_path:
             if not cur_path.exists() and not cur_path.is_file():
                 raise Exception(f"File {str(cur_path)} isn't a correct path")
@@ -101,23 +103,19 @@ class SARDatacubeMetadata:
                 )
 
         self.metadata_df = self._crawl_metadata_list(list_path)
-
         logger.debug(f"length metadata from the directory {len(self.metadata_df)}")
 
-        # The order here is important as it'll used to build the datacube.
-        self.metadata_df = self.sort_df_by_date()
+        if not(pd.isnull(self.metadata_df["acquisition_date"]).all()):
+            self.metadata_df = self.sort_df_by_date()
+            self.metadata_df = self.select_requested_dates()
+            logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
 
-        # Prune dataframe according to requested days.
-        self.metadata_df = self.select_requested_dates()
-        logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
+        if not(pd.isnull(self.metadata_df["incidence_center"]).all()):
+            self.metadata_df = self.select_requested_angles()
+            logger.debug(
+                f"length metadata after filter requested angle {len(self.metadata_df)}"
+            )
 
-        # Prune metadata df w.r.t incidence anngles
-        self.metadata_df = self.select_requested_angles()
-        logger.debug(
-            f"length metadata after filter requested angle {len(self.metadata_df)}"
-        )
-
-        # If two rasters are at the same date, the one with greater timestamp will be kept
         if not (
             self.temporal_overlap or self.metadata_df["acquisition_date"].is_unique
         ):
@@ -131,6 +129,7 @@ class SARDatacubeMetadata:
             self.metadata_df = self.set_temporal_resolution(
                 method=self.fill_method, fill_value=self.fill_value
             )
+        
         self.assert_non_empty_dataframe()
         return self
 
@@ -144,20 +143,17 @@ class SARDatacubeMetadata:
         self.metadata_df = self._crawl_metadata(raster_dir, product_type)
         logger.debug(f"length metadata from the directory {len(self.metadata_df)}")
 
-        # The order here is important as it'll used to build the datacube.
-        self.metadata_df = self.sort_df_by_date()
+        if not(pd.isnull(self.metadata_df["acquisition_date"]).all()):
+            self.metadata_df = self.sort_df_by_date()
+            self.metadata_df = self.select_requested_dates()
+            logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
 
-        # Prune dataframe according to requested days.
-        self.metadata_df = self.select_requested_dates()
-        logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
+        if not(pd.isnull(self.metadata_df["incidence_center"]).all()):
+            self.metadata_df = self.select_requested_angles()
+            logger.debug(
+                f"length metadata after filter requested angle {len(self.metadata_df)}"
+            )
 
-        # Prune metadata df w.r.t incidence anngles
-        self.metadata_df = self.select_requested_angles()
-        logger.debug(
-            f"length metadata after filter requested angle {len(self.metadata_df)}"
-        )
-
-        # If two rasters are at the same date, the one with greater timestamp will be kept
         if not (
             self.temporal_overlap or self.metadata_df["acquisition_date"].is_unique
         ):
