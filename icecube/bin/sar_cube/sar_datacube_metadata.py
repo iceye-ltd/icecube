@@ -11,6 +11,7 @@ from pathlib import Path
 
 # Local import
 from icecube.utils.logger import Logger
+from icecube.utils.common_utils import DirUtils
 from icecube.utils.metadata_crawler import metadata_crawler, metadata_crawler_list
 
 logger = Logger(os.path.basename(__file__))
@@ -91,6 +92,7 @@ class SARDatacubeMetadata:
             raise Exception(f"Please provide a correct input - {list_path}")
 
         ext = list_path[0].suffix
+
         for cur_path in list_path:
             if not cur_path.exists() and not cur_path.is_file():
                 raise Exception(f"File {str(cur_path)} isn't a correct path")
@@ -101,38 +103,9 @@ class SARDatacubeMetadata:
                 )
 
         self.metadata_df = self._crawl_metadata_list(list_path)
-
         logger.debug(f"length metadata from the directory {len(self.metadata_df)}")
 
-        # The order here is important as it'll used to build the datacube.
-        self.metadata_df = self.sort_df_by_date()
-
-        # Prune dataframe according to requested days.
-        self.metadata_df = self.select_requested_dates()
-        logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
-
-        # Prune metadata df w.r.t incidence anngles
-        self.metadata_df = self.select_requested_angles()
-        logger.debug(
-            f"length metadata after filter requested angle {len(self.metadata_df)}"
-        )
-
-        # If two rasters are at the same date, the one with greater timestamp will be kept
-        if not (
-            self.temporal_overlap or self.metadata_df["acquisition_date"].is_unique
-        ):
-            self.metadata_df = self.prune_temporal_overlap()
-
-        if self.space_overlap and not (self.coregistered):
-            self.metadata_df = self.select_overlapping_rasters()
-
-        # Add empty row as reference for the temporal resolution.
-        if bool(self.temporal_resolution):
-            self.metadata_df = self.set_temporal_resolution(
-                method=self.fill_method, fill_value=self.fill_value
-            )
-        self.assert_non_empty_dataframe()
-        return self
+        return self.filter_metadata_df_as_per_configuration()
 
     def compute_metdatadf_from_folder(self, raster_dir: str, product_type: str):
         """
@@ -141,23 +114,29 @@ class SARDatacubeMetadata:
         logger.info(
             f"Building the metadata from the folder {raster_dir} using {product_type}"
         )
+
         self.metadata_df = self._crawl_metadata(raster_dir, product_type)
         logger.debug(f"length metadata from the directory {len(self.metadata_df)}")
 
-        # The order here is important as it'll used to build the datacube.
-        self.metadata_df = self.sort_df_by_date()
+        return self.filter_metadata_df_as_per_configuration()
 
-        # Prune dataframe according to requested days.
-        self.metadata_df = self.select_requested_dates()
-        logger.debug(f"length metadata after filter by date {len(self.metadata_df)}")
+    def filter_metadata_df_as_per_configuration(self):
+        """
+        Once metadata_df has been built, modify df rows according to the user configuration
+        """
+        if not (pd.isnull(self.metadata_df["acquisition_date"]).all()):
+            self.metadata_df = self.sort_df_by_date()
+            self.metadata_df = self.select_requested_dates()
+            logger.debug(
+                f"length metadata after filter by date {len(self.metadata_df)}"
+            )
 
-        # Prune metadata df w.r.t incidence anngles
-        self.metadata_df = self.select_requested_angles()
-        logger.debug(
-            f"length metadata after filter requested angle {len(self.metadata_df)}"
-        )
+        if not (pd.isnull(self.metadata_df["incidence_center"]).all()):
+            self.metadata_df = self.select_requested_angles()
+            logger.debug(
+                f"length metadata after filter requested angle {len(self.metadata_df)}"
+            )
 
-        # If two rasters are at the same date, the one with greater timestamp will be kept
         if not (
             self.temporal_overlap or self.metadata_df["acquisition_date"].is_unique
         ):

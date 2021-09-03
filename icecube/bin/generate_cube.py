@@ -24,7 +24,7 @@ class ProductType(enum.Enum):
 
 
 class ProductExtension(enum.Enum):
-    GRD = ".tif"
+    GRD = [".tif", ".tiff"]
     SLC = ".h5"
 
 
@@ -52,7 +52,7 @@ class IceyeProcessGenerateCube:
 
         # Create SAR datacube
         if all(
-            fname.endswith(ProductExtension.GRD.value)
+            Path(fname).suffix in ProductExtension.GRD.value
             for fname in os.listdir(raster_dir)
         ):
             product_type = ProductType.GRD.value
@@ -104,7 +104,7 @@ class IceyeProcessGenerateCube:
         cube_config = CubeConfig()
         cube_config.load_config(cube_config_path)
 
-        if ext == ProductExtension.GRD.value:
+        if ext in ProductExtension.GRD.value:
             datacube = GRDDatacube.build_from_list(cube_config, list_path)
 
         elif ext == ProductExtension.SLC.value:
