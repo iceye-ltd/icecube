@@ -42,7 +42,6 @@ def metadata_crawler_list(raster_paths: List[str], variables):
     for indx, raster_path in enumerate(raster_paths):
         metadata = IO.load_ICEYE_metadata(raster_path)
         parsed_metadata = _parse_data_row(metadata, variables)
-
         # Could not read product file using the SLC product and coregister output
         parsed_metadata["product_fpath"] = raster_path
 
@@ -143,7 +142,7 @@ def _parse_data_row(metadata, variables):
 
         else:
             if variable in metadata:
-                metadata_row[variable] = metadata[variable][()]
+                metadata_row[variable] = metadata[variable]
 
     return metadata_row
 
@@ -161,13 +160,13 @@ def _parse_center_incidence_angle(metadata):
 
     if "local_incidence_angle" in metadata:
         center_incidence_angle = metadata["local_incidence_angle"][
-            int(round(len(metadata["local_incidence_angle"][()]) / 2))
+            int(round(len(metadata["local_incidence_angle"]) / 2))
         ]
     elif "incidence_center" in metadata:
         center_incidence_angle = metadata["incidence_center"]
     elif "incidence_near" in metadata and "incidence_far" in metadata:
         center_incidence_angle = (
-            metadata["incidence_near"][()] + metadata["incidence_far"][()]
+            metadata["incidence_near"] + metadata["incidence_far"]
         ) / 2
     else:
         center_incidence_angle = None
