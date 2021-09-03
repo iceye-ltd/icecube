@@ -29,7 +29,7 @@ def metadata_crawler(raster_dir, product_type, variables, recursive=False):
         pandas dataframe with variables as columns and one row per image
     """
     if product_type == "GRD":
-        fext = ".tif"
+        fext = [".tif", ".tiff"]
     elif product_type == "SLC":
         fext = ".h5"
     _sanity_check_inputs(raster_dir, product_type, variables, recursive)

@@ -21,13 +21,18 @@ class DirUtils:
     def get_dir_files(local_dir, fext=None):
         """
         scrape the given directory for all files or files with certain extension.
-        """
+        fext: str or list of strings.
+        """    
         local_dir = os.path.join(local_dir, "")
         fpaths = []  # contains names of all images.
 
+        if fext and not(isinstance(fext, list)):
+            fext = list(fext)
+
         if fext:
-            fext = fext.replace("*", "")  # if asterik was passed by mistake.
-            fpaths.extend(glob.glob(local_dir + "*" + fext))
+            for ext in fext:
+                ext = ext.replace("*", "")  # if asterik was passed by mistake.
+                fpaths.extend(glob.glob(local_dir + "*" + ext))
         else:
             fpaths.extend(glob.glob(local_dir + "*"))
 
