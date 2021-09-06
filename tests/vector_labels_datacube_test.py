@@ -117,7 +117,6 @@ def test_grd_vector_labels_custom_config():
 
     # Make assertion on one of the NA slice values.
     dummy_cube_dict = pickle.loads(dc.xrdataset["Labels"][0].values)
-
     dummy_vec_dict = {"labels": {"objects": []}}
     assert dummy_cube_dict == dummy_vec_dict
 

@@ -10,7 +10,6 @@ import os
 import pickle
 from typing import Tuple
 
-# Local import
 from icecube.bin.labels_cube.labels_datacube import LabelsDatacube
 from icecube.bin.config import CubeConfig
 from icecube.utils.common_utils import get_dummy_metadata, get_product_metadata
@@ -74,7 +73,3 @@ def sample_workflow():
     product_type = "GRD"  # "SLC"
 
     VectorLabels.build(cc, product_type, dummy_labels_fpath, raster_dir)
-
-
-if __name__ == "__main__":
-    sample_workflow()

@@ -277,6 +277,128 @@ def load_DEM(DEM_path):
         return DEM
 
 
+def parse_slc_rpc_to_meta_dict(RPC_source: h5py.File, meta_dict):
+    """
+    Parsing SLC metadata to dict.
+    The keys are generated in a manner allowing to create subgroups when saved in `.h5`
+    Args:
+        RPC_source: `h5py` File containing RPCs
+        meta_dict: metadata dictionary to update with RPC metadata
+    Return:
+        rpc_dict: RPC Dictionary containing all RPC fields as numpy arrays
+    """
+    rpc_dict = {}
+
+    for key, val in RPC_source.items():
+        rpc_dict[key] = np.array(val, dtype=np.float32)
+
+    return rpc_dict
+
+
+def read_SLC_metadata(h5_io):
+    meta_dict = {}
+
+    # h5py doesn't read .keys() correctly, but returns a generator. So parsing to list to get all keys.
+    key_list = [x for x in h5_io.keys()]
+
+    # Check if there already is a list of bands
+    if "bands" in key_list:
+        non_meta_keys = h5_io["bands"]
+    else:
+        non_meta_keys = ["s_i", "s_q"]
+        meta_dict["bands"] = non_meta_keys
+
+    additional_bands_to_skip_for_now = [
+        "RPC",
+        "height_spline",
+        "lat_spline",
+        "lon_spline",
+    ]
+    for key in key_list:
+        if key not in non_meta_keys + additional_bands_to_skip_for_now:
+
+            h5_meta_val = h5_io[key][()]
+
+            if type(h5_meta_val) == bytes or type(h5_meta_val) == np.bytes_:
+                # Strings need to be decoded to utf-8 in order to be read correctly in h5py
+                meta_dict[key] = h5_meta_val.decode("utf-8")
+
+            else:
+                # We're handling a numpy array so we should be good to go
+                meta_dict[key] = np.array(h5_meta_val[()])
+
+    # RPCs are nested under "RPC/" in the h5 thus need to be parsed in a specific manner
+    RPC_source = h5_io["RPC"]
+    meta_dict["RPC"] = parse_slc_rpc_to_meta_dict(
+        RPC_source=RPC_source, meta_dict=meta_dict
+    )
+
+    return meta_dict
+
+
+def correct_grd_metadata_key(original_key: str) -> str:
+    """
+    Change an upper case GRD key to it's SLC metadata equivalent.
+    By default this is uppercasing all keys; otherwise if the value in the
+    `special_keys` dict will be used.
+
+    Args:
+        original_key: input metadata key
+        special_keys: dictionary of special keys that require more than just lower case
+
+    Return:
+        corrected_key: corrected key name
+    """
+
+    special_keys = {
+        "POSX": "posX",
+        "POSY": "posY",
+        "POSZ": "posZ",
+        "VELX": "velX",
+        "VELY": "velY",
+        "VELZ": "velZ",
+    }
+    if original_key in special_keys:
+        corrected_key = special_keys[original_key]
+
+    else:
+        corrected_key = original_key.lower()
+
+    return corrected_key
+
+
+def read_GRD_metadata(grd_fpath):
+    with rasterio.open(grd_fpath) as file:
+
+        metadata = file.tags()
+        metadata = {
+            correct_grd_metadata_key(key): value for key, value in metadata.items()
+        }
+
+        # Also the numeric variables are output as strings. Fix it.
+        metadata = _fix_GRD_metadata_datatypes(metadata, _expected_datatypes("GRD"))
+
+        # Load a list of the keys that should be found and a list of which were found.
+        expected_keys = _expected_keys("GRD")
+        found_keys = metadata.keys()
+
+        # If something is missing mark it with None:
+        for var_name in found_keys:
+            if var_name not in expected_keys:
+                metadata.update({var_name: None})
+
+        metadata = _parse_GRD_RPC(metadata, file)
+
+    # Turn the whining back on.
+    warnings.filterwarnings(
+        "default",
+        "Dataset has no geotransform set",
+        category=rasterio.errors.NotGeoreferencedWarning,
+    )
+
+    return metadata
+
+
 def load_ICEYE_metadata(path):
     """
     Load metadata
@@ -289,6 +411,7 @@ def load_ICEYE_metadata(path):
     # Turn the warnings off for a while.
 
     warnings.filterwarnings("ignore", category=rasterio.errors.NotGeoreferencedWarning)
+    warnings.filterwarnings("default", category=rasterio.errors.NotGeoreferencedWarning)
 
     # sanity check
     if not isinstance(path, str):
@@ -303,125 +426,16 @@ def load_ICEYE_metadata(path):
         """
         h5 has both the SLC images and metadata. gdal/rasterio seems to break a
         lot of the metadata fields on the SLC case, so using h5py.
-        """
 
-        file = h5py.File(path, "r")
-
-        # Load the keys that should be found and which were found.
-        expected_keys = _expected_keys("SLC")
-        found_keys = file.keys()
-
-        datetime_fields = _expected_datatypes("SLC")
-
-        metadata = {}
-        # Fill the metadata dict.
-        for var_name in expected_keys:
-            if var_name in found_keys:
-
-                field_contents = file[var_name]
-
-                # All the datetimes are bytecode. Turn them into numpy arrays of chars for compatability reasons.
-                if var_name in datetime_fields.keys():
-                    if (
-                        type(field_contents[()]) == bytes
-                        or type(field_contents[()]) == np.bytes_
-                    ):
-                        field_contents = np.squeeze(
-                            np.char.decode(field_contents[()], "utf-8")
-                        )
-                    else:
-                        field_contents = np.array(field_contents[()])
-
-                metadata.update({var_name: field_contents})
-            else:
-                # If something is missing mark it with None.
-                metadata.update({var_name: None})
-
-        if "RPC" in found_keys:
-            metadata = _parse_SLC_RPC(metadata, file)
-        else:
-            metadata.update({"RPC": None, "RPC_metadata": None})
-
-        """
-        Note that the SLC reader is not closed unlike the GRD. This is by design, I'd rather
+        Note:: that the SLC reader is not closed unlike the GRD. This is by design, I'd rather
         pass pointers than vectors with tens of thousands of elements. Only the datetimes
         are converted from bytedata and read into the dict for compatability reasons.
         """
+        return read_SLC_metadata(h5py.File(path, "r"))
 
     elif path.endswith(".tif") or path.endswith(".tiff"):
+        return read_GRD_metadata(path)
 
-        with rasterio.open(path) as file:
-
-            metadata = file.tags()
-
-            # For whatever reason rasterio reads the metadata fields in ALL CAPS.
-            # According to specs it should be lowercase. Change all dict fields to lower.
-            metadata = {k.lower(): v for k, v in metadata.items()}
-
-            # Well, not all of them. For example SLC still has posX, posY, velX, velY etc. Change them back.
-            metadata["posX"] = metadata.pop("posx")
-            metadata["posY"] = metadata.pop("posy")
-            metadata["posZ"] = metadata.pop("posz")
-
-            metadata["velX"] = metadata.pop("velx")
-            metadata["velY"] = metadata.pop("vely")
-            metadata["velZ"] = metadata.pop("velz")
-
-            # Also the numeric variables are output as strings. Fix it.
-            metadata = _fix_GRD_metadata_datatypes(metadata, _expected_datatypes("GRD"))
-
-            # Load a list of the keys that should be found and a list of which were found.
-            expected_keys = _expected_keys("GRD")
-            found_keys = metadata.keys()
-
-            # If something is missing mark it with None:
-            for var_name in found_keys:
-                if var_name not in expected_keys:
-                    # warnings.warn('Did not find the metadata variable "%s" from the predefined dictionary of metadata fields. This is most likely due to a change in the product metadata. Replacing the entry with None.'%var_name,
-                    #              RuntimeWarning)
-                    metadata.update({var_name: None})
-
-            metadata = _parse_GRD_RPC(metadata, file)
-
-        # Turn the whining back on.
-        warnings.filterwarnings(
-            "default",
-            "Dataset has no geotransform set",
-            category=rasterio.errors.NotGeoreferencedWarning,
-        )
-
-    elif path.endswith(".xml"):
-        """
-        xmltodict can parse the file, and it seems reasonable. However the layout
-        is different, e.g.
-
-        .xml has a field Doppler_Centroid_Coefficients with a subfield of dc_coefficient_lists, .h5 has dc_coefficient_lists
-        .xml has Doppler_Rate with subfield coefficient, .h5 has doppler_rate_coeffs
-        .xml has Orbit_State_Vector with the necessary info in subfields, h5 has only the subfields.
-        .xml has incidence_far, incidence_near, .h5 has local_incidence_range(?)
-
-        So if you want to you can use this to extract the times and image coordinates as is,
-        but otherwise the fields are dis-similiarly named and you need to write a wrapper. .xml is
-        a subset of the .h5 as explained in the docs.
-        """
-
-        raise NotImplementedError(
-            "Ambiguous functionality, the .xml parsing structure does not work as expected. Fix the code before proceeding."
-        )
-        # A subset of it works, but some variables are missing and some are hidden under a hierarchical structure. You'll need to finish writing the
-        # wrapper if you want to use this.
-
-        with open(path) as fd:
-            # Read the data
-            metadata = xmltodict.parse(fd.read())["Metadata"]
-
-            xml_expected_keys = _expected_keys("xml")
-
-            # If something is missing mark it with None.
-            if len(xml_expected_keys) > len(metadata.keys()):
-                missing_keys = set(xml_expected_keys) - set(metadata.keys())
-                missing_placeholder_dict = dict.fromkeys(missing_keys, None)
-                metadata.update(missing_placeholder_dict)
     elif not isinstance(path, str):
         raise TypeError(
             'Could not understand input "path", a str was expected but a %s datatype variable was input.'
@@ -432,10 +446,6 @@ def load_ICEYE_metadata(path):
             'Could not understand input "path", either a .h5, .tif, .tiff or a .xml was expected but %s was input.'
             % path
         )
-
-    warnings.filterwarnings("default", category=rasterio.errors.NotGeoreferencedWarning)
-
-    return metadata
 
 
 def _expected_keys(product_type):
@@ -858,6 +868,7 @@ def _raise_rasterio_IOError(path):
             % path
         )
 
+
 def _parse_GRD_RPC(metadata, source_file):
     """
     Attempt to load the coefficients for a rational polynomial cubic model from the source geotiff metadata,
@@ -931,44 +942,3 @@ def _parse_GRD_RPC_vect(str_coeffs):
         coeffs = [float(coeff) for coeff in coeffs]
 
     return coeffs
-
-
-def _parse_SLC_RPC(metadata, source_file):
-    """
-    Attempt to load the coefficients for a rational polynomial cubic model from the source SLC,
-    as read by coregister.IO.load_ICEYE_metadata()
-    """
-
-    az_num = source_file["RPC"]["LINE_NUM_COEFF"][()]
-    az_denom = source_file["RPC"]["LINE_DEN_COEFF"][()]
-    range_num = source_file["RPC"]["SAMP_NUM_COEFF"][()]
-    range_denom = source_file["RPC"]["SAMP_DEN_COEFF"][()]
-
-    if az_num is None or az_denom is None or range_num is None or range_denom is None:
-        RPC = None
-        RPC_metadata = None
-    else:
-        RPC = np.zeros((4, 20))
-
-        RPC[0, :] = az_num
-        RPC[1, :] = az_denom
-        RPC[2, :] = range_num
-        RPC[3, :] = range_denom
-
-        RPC_metadata = {
-            "lat_mean": source_file["RPC"]["LAT_OFF"][()],
-            "lat_scale_factor": source_file["RPC"]["LAT_SCALE"][()],
-            "lon_mean": source_file["RPC"]["LONG_OFF"][()],
-            "lon_scale_factor": source_file["RPC"]["LONG_SCALE"][()],
-            "height_mean": source_file["RPC"]["HEIGHT_OFF"][()],
-            "height_scale_factor": source_file["RPC"]["HEIGHT_SCALE"][()],
-            "az_idx_mean": source_file["RPC"]["LINE_OFF"][()],
-            "az_idx_scale_factor": source_file["RPC"]["LINE_SCALE"][()],
-            "range_idx_mean": source_file["RPC"]["SAMP_OFF"][()],
-            "range_idx_scale_factor": source_file["RPC"]["SAMP_SCALE"][()],
-        }
-
-    metadata["RPC"] = RPC
-    metadata["RPC_metadata"] = RPC_metadata
-
-    return metadata

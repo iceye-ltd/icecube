@@ -24,7 +24,7 @@ class ProductType(enum.Enum):
 
 
 class ProductExtension(enum.Enum):
-    GRD = ".tif"
+    GRD = [".tif", ".tiff"]
     SLC = ".h5"
 
 
@@ -52,7 +52,7 @@ class IceyeProcessGenerateCube:
 
         # Create SAR datacube
         if all(
-            fname.endswith(ProductExtension.GRD.value)
+            Path(fname).suffix in ProductExtension.GRD.value
             for fname in os.listdir(raster_dir)
         ):
             product_type = ProductType.GRD.value
@@ -104,7 +104,7 @@ class IceyeProcessGenerateCube:
         cube_config = CubeConfig()
         cube_config.load_config(cube_config_path)
 
-        if ext == ProductExtension.GRD.value:
+        if ext in ProductExtension.GRD.value:
             datacube = GRDDatacube.build_from_list(cube_config, list_path)
 
         elif ext == ProductExtension.SLC.value:
@@ -163,7 +163,7 @@ def sample_list_workflow():
                 "tests",
                 "resources",
                 "grd_stack",
-                "ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
+                "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
             )
         ),
         Path(
@@ -173,7 +173,7 @@ def sample_list_workflow():
                 "tests",
                 "resources",
                 "grd_stack",
-                "ICEYE_X9_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
+                "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
             )
         ),
     ]
@@ -219,8 +219,9 @@ def cli():
     datacube = IceyeProcessGenerateCube.create_cube(
         args.raster_dir, cube_config_fpath, labels_fpath=args.labels_fpath
     )
-
+    print(f"Generated cube dimensions are: {datacube.get_dimensions()}")
     if args.cube_save is not None:
+        print("Writing ICEcube to disk. This may take some time, please standby ...")
         datacube.to_file(args.cube_save)
 
 
