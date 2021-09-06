@@ -19,8 +19,7 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - ICEcube Examples:
-    - GRD Datacube Input / Output : examples/Ex1_GRD_input_output.ipynb
-    - SLC Datacube Input / Output : examples/Ex2_SLC_input_output.ipynb
+    - SAR Datacube Input / Output : examples/Ex1_SAR_input_output.ipynb
     - Labels Datacube : examples/Ex3_Labels.ipynb
     - Datacube : examples/Ex4_Datacube.ipynb
     - ML integration: examples/Ex5_Datacube_ML.ipynb
