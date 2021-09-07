@@ -19,10 +19,12 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - ICEcube Examples:
-    - SAR Datacube Input / Output : examples/Ex1_SAR_input_output.ipynb
-    - Labels Datacube : examples/Ex3_Labels.ipynb
+    - Overview : examples/Overview.md
+    - SARDatacube : examples/Ex1_SARDatacube.ipynb
+    - LabelsDatacube : examples/Ex2_LabelsDatacube.ipynb
+    - CreatingDatacube: examples/Ex3_CreatingDatacube.ipynb  
     - Datacube : examples/Ex4_Datacube.ipynb
-    - ML integration: examples/Ex5_Datacube_ML.ipynb
+    - Datacube for ML: examples/Ex5_Datacube_for_ML.ipynb
 
   - Implementation Details:
     - Datacube: datacube/Datacube.md
