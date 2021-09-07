@@ -11,14 +11,14 @@
       
       
       
-        <link rel="canonical" href="https://iceye-ltd.github.io/icecube/examples/Ex1_GRD_input_output/">
+        <link rel="canonical" href="https://iceye-ltd.github.io/icecube/examples/Ex2_LabelsDatacube/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
-        <title>Ex 1 - GRD Datacube I/O - ICEcube Documentation</title>
+        <title>Ex2 - Labels Datacube - ICEcube Documentation</title>
       
     
     
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ex-1-grd-datacube-io" class="md-skip">
+        <a href="#ex2-labels-datacube" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ex 1 - GRD Datacube I/O
+              Ex2 - Labels Datacube
             
           </span>
         </div>
@@ -258,6 +258,30 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../Overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ex1_SARDatacube/" class="md-nav__link">
+        Ex 1 - SAR Datacube
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -270,12 +294,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Ex 1 - GRD Datacube I/O
+          Ex2 - Labels Datacube
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Ex 1 - GRD Datacube I/O
+        Ex2 - Labels Datacube
       </a>
       
         
@@ -293,29 +317,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-datacube" class="md-nav__link">
-    Creating  a Datacube
+  <a href="#creating-json-labels" class="md-nav__link">
+    Creating JSON Labels
   </a>
+  
+    <nav class="md-nav" aria-label="Creating JSON Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-example-with-vector-labels" class="md-nav__link">
+    1. Example with vector labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-example-with-raster-labels" class="md-nav__link">
+    2. Example with Raster Labels
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grddatacube-object" class="md-nav__link">
-    GRDDatacube object
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-datacube-from-a-list-of-path" class="md-nav__link">
-    Build datacube from a list of path
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#writing-a-file-to-geotiff" class="md-nav__link">
-    Writing a file to GeoTiff
+  <a href="#populating-datacubes-with-labels" class="md-nav__link">
+    Populating Datacubes with Labels
   </a>
   
 </li>
@@ -333,20 +363,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ex2_SLC_input_output/" class="md-nav__link">
-        Ex 2 - SLC Datacube I/O
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Ex3_Labels/" class="md-nav__link">
-        Ex 3 - Training Labels
+      <a href="../Ex3_CreatingDatacube/" class="md-nav__link">
+        Ex3 - CreatingDatacube
       </a>
     </li>
   
@@ -369,7 +387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Ex5_Datacube_ML/" class="md-nav__link">
+      <a href="../Ex5_Datacube_for_ML/" class="md-nav__link">
         Ex 5 - Datacube for ML
       </a>
     </li>
@@ -465,29 +483,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-datacube" class="md-nav__link">
-    Creating  a Datacube
+  <a href="#creating-json-labels" class="md-nav__link">
+    Creating JSON Labels
   </a>
+  
+    <nav class="md-nav" aria-label="Creating JSON Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-example-with-vector-labels" class="md-nav__link">
+    1. Example with vector labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-example-with-raster-labels" class="md-nav__link">
+    2. Example with Raster Labels
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#grddatacube-object" class="md-nav__link">
-    GRDDatacube object
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-datacube-from-a-list-of-path" class="md-nav__link">
-    Build datacube from a list of path
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#writing-a-file-to-geotiff" class="md-nav__link">
-    Writing a file to GeoTiff
+  <a href="#populating-datacubes-with-labels" class="md-nav__link">
+    Populating Datacubes with Labels
   </a>
   
 </li>
@@ -504,7 +528,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/iceye-ltd/icecube/edit/main/docs/examples/Ex1_GRD_input_output.ipynb" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/iceye-ltd/icecube/edit/main/docs/examples/Ex2_LabelsDatacube.ipynb" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1011,8 +1035,7 @@ all of MD as it is not optimized for dense, information rich UIs.
     <!-- End of mathjax configuration --><div class="jupyter-wrapper">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="ex-1-grd-datacube-io">Ex 1 - GRD Datacube I/O<a class="anchor-link" href="#Ex-1---GRD-Datacube-I/O">&#182;</a></h1><p>In this basic example, we will open a stack of Ground Range Detected (GRD) images, read it as a <code>SARDatacube</code> object, display the array, run some simple metadata queries, and then save the stack of images as a datacube.</p>
-<p>GRD images are georegistered rasters. ICEYE uses the .tif format. This image has only signal intensity and not the complex information.</p>
+<h1 id="ex2-labels-datacube">Ex2 - Labels Datacube<a class="anchor-link" href="#Ex2---Labels-Datacube">&#182;</a></h1><p>This notebook provides a quick demo on how to create a datacube of training labels to complement a datacube of imagery. The training label datacube is critical for supervised machine learning. Having the ability to ingest labels in a datacube format provides flexibility for ML engineers to train models easily without worrying about underlying remote sensing image formats, which can be sometimes daunting for non experts.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -1023,14 +1046,14 @@ all of MD as it is not optimized for dense, information rich UIs.
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span><span class="o">,</span><span class="nn">inspect</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">join</span>
-<span class="kn">from</span> <span class="nn">icecube.bin.sar_cube.grd_datacube</span> <span class="kn">import</span> <span class="n">GRDDatacube</span>
-<span class="kn">from</span> <span class="nn">icecube.bin.config</span> <span class="kn">import</span> <span class="n">CubeConfig</span> 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span> 
-<span class="kn">from</span> <span class="nn">icecube.bin.datacube_variables</span> <span class="kn">import</span> <span class="n">NAME_INTENSITY_BAND</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">icecube.bin.labels_cube.create_json_labels</span> <span class="kn">import</span> <span class="n">CreateLabels</span>
+<span class="kn">import</span> <span class="nn">icecube</span>
 </pre></div>
 
         </div>
@@ -1042,15 +1065,10 @@ all of MD as it is not optimized for dense, information rich UIs.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="creating-a-datacube">Creating  a Datacube<a class="anchor-link" href="#Creating--a-Datacube">&#182;</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Modify the following paths based on your use case. For the purpose of this demo, we'll work on a subset of images used for testing the library.</p>
+<p>Currently as of version 1.0, <code>icecube</code> provides the ability to ingest labels that are both vector and in raster format. These two formats should cover almost all of the use cases needed for training machine learning models for supervised training. Vector labels (e.g. bounding boxes, polygons) are useful for training object detectors while raster images are often (but not always) leveraged for segmentation wokflows.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
@@ -1058,9 +1076,15 @@ all of MD as it is not optimized for dense, information rich UIs.
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">parent_dir</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())))))</span>
-<span class="n">test_dir</span> <span class="o">=</span>  <span class="n">join</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">,</span> <span class="s2">&quot;tests&quot;</span><span class="p">,</span> <span class="s2">&quot;resources&quot;</span><span class="p">,</span> <span class="s2">&quot;grd_stack&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The GRDs used for the demo are located at Path_to_library/icecube/tests/resources/grd_stack&quot;</span><span class="p">)</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># set paths here.</span>
+<span class="n">icecube_abspath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">icecube</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+<span class="n">resource_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">icecube_abspath</span><span class="p">,</span> <span class="s2">&quot;tests/resources&quot;</span><span class="p">)</span>
+<span class="n">grd_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;grd_stack/&quot;</span><span class="p">)</span>
+<span class="n">vector_labels_save_fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">icecube_abspath</span><span class="p">,</span> <span class="s2">&quot;icecube/dataset/temp/dummy_vector_labels.json&quot;</span><span class="p">)</span>
+<span class="n">raster_labels_save_fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">icecube_abspath</span><span class="p">,</span> <span class="s2">&quot;icecube/dataset/temp/dummy_raster_labels.json&quot;</span><span class="p">)</span>
+<span class="n">cube_save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">icecube_abspath</span><span class="p">,</span> <span class="s2">&quot;icecube/dataset/temp/my_awesome_labels_cube.nc&quot;</span><span class="p">)</span>
+<span class="n">Path</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">vector_labels_save_fpath</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grd_fpaths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">grd_dir</span><span class="o">+</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -1069,31 +1093,23 @@ all of MD as it is not optimized for dense, information rich UIs.
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>The GRDs used for the demo are located at Path_to_library/icecube/tests/resources/grd_stack
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The first step is to create or edit the config file, which is a json file containing the parameters that you want to modify for the datacube construction.</p>
+<h2 id="creating-json-labels">Creating JSON Labels<a class="anchor-link" href="#Creating-JSON-Labels">&#182;</a></h2><p>In order to populate labels in <code>icecube</code>, labels must be converted to a specific JSON structure. The section walks one through the script that can be used to create such labels.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="1-example-with-vector-labels">1. Example with vector labels<a class="anchor-link" href="#1.-Example-with-vector-labels">&#182;</a></h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Let's first go through an example where we will use the assets in <code>tests/resources</code> to demonstrate the example with vector labels.
+The below example showcase ingesting bounding boxes inside datacubes as labels.
+For the examples below, we will use assets inside <code>tests/resources/grd_stack/*.tif</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -1104,10 +1120,20 @@ all of MD as it is not optimized for dense, information rich UIs.
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">cube_config</span> <span class="o">=</span> <span class="n">CubeConfig</span><span class="p">()</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># let&#39;s create some random bounding boxes for dummy training sample</span>
+<span class="n">random_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rand-a&quot;</span><span class="p">,</span> <span class="s2">&quot;rand-b&quot;</span><span class="p">,</span> <span class="s2">&quot;rand-c&quot;</span><span class="p">]</span> 
 
-<span class="c1"># If you want to load config parameters;</span>
-<span class="c1">#cube_config.load_config(cube_config_path)</span>
+<span class="k">def</span> <span class="nf">create_random_bboxes</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
+    <span class="n">random_bboxes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">I_shape</span> <span class="o">=</span> <span class="n">I</span><span class="o">.</span><span class="n">shape</span>
+    
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)):</span>
+        <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">I_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">I_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">I_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">I_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+        
+        <span class="n">random_bboxes</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">random_bboxes</span>
 </pre></div>
 
         </div>
@@ -1124,8 +1150,22 @@ all of MD as it is not optimized for dense, information rich UIs.
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># build the datacube composed by a stack of GRD</span>
-<span class="n">grd_datacube</span> <span class="o">=</span> <span class="n">GRDDatacube</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">cube_config</span><span class="p">,</span> <span class="n">test_dir</span><span class="p">)</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># For demo purposes, we will generate some random samples for bounding boxes. </span>
+<span class="n">labels_collection</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">grd_fpath</span> <span class="ow">in</span> <span class="n">grd_fpaths</span><span class="p">:</span>
+    <span class="n">grd_values</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">grd_fpath</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">grd_product</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">grd_fpath</span><span class="p">)</span><span class="o">.</span><span class="n">tags</span><span class="p">()[</span><span class="s2">&quot;PRODUCT_FILE&quot;</span><span class="p">]</span>
+    <span class="n">bboxes_seq</span> <span class="o">=</span> <span class="n">create_random_bboxes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">45</span><span class="p">),</span> <span class="n">grd_values</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">each_bbox</span> <span class="ow">in</span> <span class="n">bboxes_seq</span><span class="p">:</span> 
+        <span class="n">labels_collection</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">grd_product</span><span class="p">,</span> <span class="n">each_bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                  <span class="n">each_bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                  <span class="n">each_bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">each_bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                                  <span class="n">random_classes</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)]])</span>
+
+<span class="n">labels_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">labels_collection</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;xmin&quot;</span><span class="p">,</span> <span class="s2">&quot;ymin&quot;</span><span class="p">,</span> <span class="s2">&quot;xmax&quot;</span><span class="p">,</span> <span class="s2">&quot;ymax&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">])</span>
+<span class="n">labels_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -1142,14 +1182,85 @@ all of MD as it is not optimized for dense, information rich UIs.
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>08/31/2021 10:41:21 AM - sar_datacube_metadata.py - [INFO] - Building the metadata from the folder /home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack using GRD
-processing rasters for cubes: 100%|██████████| 3/3 [00:00&lt;00:00, 86.83it/s]
-08/31/2021 10:41:21 AM - common_utils.py - [INFO] - create running time is 0.0576 seconds
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>file_name</th>
+      <th>xmin</th>
+      <th>ymin</th>
+      <th>xmax</th>
+      <th>ymax</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
+      <td>5</td>
+      <td>8</td>
+      <td>9</td>
+      <td>9</td>
+      <td>rand-c</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
+      <td>5</td>
+      <td>3</td>
+      <td>6</td>
+      <td>6</td>
+      <td>rand-c</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
+      <td>8</td>
+      <td>2</td>
+      <td>9</td>
+      <td>9</td>
+      <td>rand-b</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
+      <td>7</td>
+      <td>2</td>
+      <td>9</td>
+      <td>4</td>
+      <td>rand-a</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ICEYE_GRD_54549_20210427T215124_hollow_10x10pi...</td>
+      <td>3</td>
+      <td>5</td>
+      <td>4</td>
+      <td>9</td>
+      <td>rand-c</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
 
@@ -1158,22 +1269,8 @@ processing rasters for cubes: 100%|██████████| 3/3 [00:00&lt
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="grddatacube-object"><code>GRDDatacube</code> object<a class="anchor-link" href="#GRDDatacube-object">&#182;</a></h2><p>Every <code>GRDDatacube</code> object is a <code>SARDatacube</code></p>
-<p>These have multiple methods:</p>
-<ul>
-<li><code>.cube_config</code> -&gt; As seen above, the configuration is the one used to create the datacube. We can modify those parameters by defining a json file that will overload every parameters. </li>
-</ul>
-<ul>
-<li><code>.xrdataset</code> -&gt; This is theXarray.Dataset containing the stack of images, (Azimuth, Range and Band). Each image is loaded using dask (for memory optimization) and then tranformed into an Xarray.Dataarray. There is one temporal layer in the datacube for each GRD file found in your directory.</li>
-</ul>
-<ul>
-<li><code>.get_metadata(temporal_index)</code> -&gt;  Returns the metadata of the image at the certain index, this is Dict[str, str] representing the images</li>
-</ul>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
@@ -1181,44 +1278,34 @@ processing rasters for cubes: 100%|██████████| 3/3 [00:00&lt
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># You can access the dataset, for an easy visualization. The &#39;Band&#39; dimension shows the number of GRD images stacked from your input path.</span>
-<span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">head</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Now we can easily convert these bounding boxes to icecube-friendly JSON strucutre using `CreateLabels` class</span>
+<span class="n">create_labels</span> <span class="o">=</span> <span class="n">CreateLabels</span><span class="p">(</span><span class="s2">&quot;vector&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df_row</span> <span class="ow">in</span> <span class="n">labels_df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="n">product_labels_seq</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">product_name</span> <span class="o">=</span> <span class="n">df_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="c1"># instance label contains bounding box for a unit label. </span>
+    
+    <span class="n">instance_label</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;xmin&quot;</span><span class="p">:</span> <span class="n">df_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s2">&quot;ymin&quot;</span><span class="p">:</span> <span class="n">df_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s2">&quot;xmax&quot;</span><span class="p">:</span> <span class="n">df_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+            <span class="s2">&quot;ymax&quot;</span><span class="p">:</span> <span class="n">df_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="n">class_name</span> <span class="o">=</span> <span class="n">df_row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="c1"># product_labels_seq contains sequence of WKT geom vectors</span>
+    <span class="n">product_labels_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">create_labels</span><span class="o">.</span><span class="n">create_instance_bbox</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">instance_label</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">create_labels</span><span class="o">.</span><span class="n">populate_labels</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">product_name</span><span class="p">),</span> <span class="n">product_labels_seq</span><span class="p">)</span>
+
+<span class="n">create_labels</span><span class="o">.</span><span class="n">write_labels_to_json</span><span class="p">(</span><span class="n">vector_labels_save_fpath</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
         </div>
     </div>
 
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;bound method Dataset.head of &lt;xarray.Dataset&gt;
-Dimensions:    (Azimuth: 10, Band: 3, Range: 10)
-Coordinates:
-  * Azimuth    (Azimuth) int64 0 1 2 3 4 5 6 7 8 9
-  * Range      (Range) int64 0 1 2 3 4 5 6 7 8 9
-  * Band       (Band) datetime64[ns] 2021-04-27 2021-04-28 2021-05-27
-Data variables:
-    Intensity  (Band, Azimuth, Range) uint16 329 389 217 418 ... 597 85 482 334&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -1229,8 +1316,8 @@ Data variables:
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Access the array dimensions</span>
-<span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">dims</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Here is a glimpse at how labels look like for a single image in the stack:</span>
+<span class="n">create_labels</span><span class="o">.</span><span class="n">labels_collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
         </div>
@@ -1253,7 +1340,43 @@ Data variables:
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>Frozen(SortedKeysDict({&#39;Azimuth&#39;: 10, &#39;Range&#39;: 10, &#39;Band&#39;: 3}))</pre>
+<pre>{&#39;product_file&#39;: &#39;ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&#39;,
+ &#39;labels&#39;: {&#39;objects&#39;: [{&#39;class&#39;: &#39;rand-c&#39;,
+    &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 8, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}},
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 3, &#39;xmax&#39;: 6, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 5, &#39;xmax&#39;: 4, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 8, &#39;xmax&#39;: 7, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 5, &#39;xmax&#39;: 5, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 1, &#39;xmax&#39;: 2, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 3, &#39;xmax&#39;: 6, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 3, &#39;xmax&#39;: 3, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 7, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 1, &#39;xmax&#39;: 9, &#39;ymax&#39;: 1}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 9, &#39;xmax&#39;: 0, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 2, &#39;xmax&#39;: 5, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 8, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 0, &#39;xmax&#39;: 6, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 7, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 6, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 2, &#39;xmax&#39;: 7, &#39;ymax&#39;: 2}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 8, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 5, &#39;xmax&#39;: 7, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 6}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 1, &#39;xmax&#39;: 2, &#39;ymax&#39;: 7}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 6, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 8, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 2, &#39;xmax&#39;: 8, &#39;ymax&#39;: 5}}],
+   [{&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 9, &#39;xmax&#39;: 5, &#39;ymax&#39;: 9}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 1, &#39;xmax&#39;: 7, &#39;ymax&#39;: 4}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 0, &#39;xmax&#39;: 7, &#39;ymax&#39;: 3}}],
+   [{&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 0, &#39;xmax&#39;: 3, &#39;ymax&#39;: 1}}],
+   [{&#39;class&#39;: &#39;rand-c&#39;,
+     &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 8, &#39;xmax&#39;: 5, &#39;ymax&#39;: 9}}]]}}</pre>
 </div>
 
 </div>
@@ -1262,7 +1385,26 @@ Data variables:
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Please note that we can follow similar structure for other WKT geometries like Polygons, Points and easily create JSON files with labels. Sample vector labels can be found under <code>tests/resources/labels/dummy_vector_labels.json</code> for reference.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="2-example-with-raster-labels">2. Example with Raster Labels<a class="anchor-link" href="#2.-Example-with-Raster-Labels">&#182;</a></h3><p>Similar to above example with vector labels, we can ingest rasters as segmentation labels too. This example quickly highlights the workflow to create icecube-friendly raster JSON structure.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Creating JSON structure for raster labels is relatively straightforward. We simply maintain a dictionary where key represents the product-file (or the image) and value represents the raster as label. 
+For this example, we will use the sample masks inside <code>tests/resources</code></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
@@ -1270,16 +1412,36 @@ Data variables:
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Let&#39;s visualize the intensity component of the grd_datacube for the first and last image of the stack. </span>
-<span class="c1"># Will convert the data to bytes (from float64), so we can see something.</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">masks_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;masks/&quot;</span><span class="p">)</span>
+<span class="n">raster_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;grd_stack/&quot;</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">raster_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
-<span class="c1">#First image in the stack</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">byte</span><span class="p">(</span><span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="n">masks_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
-<span class="c1">#Last image in the stack</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">byte</span><span class="p">(</span><span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+<span class="n">masks_fpaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">masks_dir</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span> <span class="k">for</span> <span class="n">fpath</span> <span class="ow">in</span> <span class="n">masks_names</span><span class="p">]</span>
+
+<span class="c1"># Create a dictionary where key:value pair represents raster:mask</span>
+
+<span class="n">raster_mask_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">raster_name</span><span class="p">,</span> <span class="n">mask_fpath</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">raster_names</span><span class="p">,</span> <span class="n">masks_fpaths</span><span class="p">):</span>
+    <span class="n">raster_mask_dict</span><span class="p">[</span><span class="n">raster_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask_fpath</span>
+
+<span class="n">create_labels</span> <span class="o">=</span> <span class="n">CreateLabels</span><span class="p">(</span><span class="s2">&quot;raster&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">product_name</span><span class="p">,</span> <span class="n">mask_fpath</span> <span class="ow">in</span> <span class="n">raster_mask_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">seg_mask</span> <span class="o">=</span> <span class="n">create_labels</span><span class="o">.</span><span class="n">create_instance_segmentation</span><span class="p">(</span><span class="n">mask_fpath</span><span class="p">)</span>
+    <span class="n">create_labels</span><span class="o">.</span><span class="n">populate_labels</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span> <span class="n">seg_mask</span><span class="p">)</span>
+
+<span class="n">create_labels</span><span class="o">.</span><span class="n">write_labels_to_json</span><span class="p">(</span><span class="n">raster_labels_save_fpath</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -1288,46 +1450,41 @@ Data variables:
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x7fc21f8897f0&gt;</pre>
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This is how our JSON file looks like for raster labels.</p>
+<p><code>/home/user/runner/</code> simply indicates the local filepath of rasters</p>
 
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,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
-"
->
-</div>
+<pre><code>[
+    {
+        "product_file": "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.tif",
+        "labels": {
+            "segmentation": "/home/user/runner/icecube/tests/resources/masks/ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_0.png"
+        }
+    },
+    {
+        "product_file": "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.tif",
+        "labels": {
+            "segmentation": "/home/user/runner/icecube/tests/resources/masks/ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_1.png"
+        }
+    },
+    {
+        "product_file": "ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.tif",
+        "labels": {
+            "segmentation": "/home/user/runner/icecube/tests/resources/masks/ICEYE_GRD_SLED_54549_20210427T215124_hollow_10x10pixels_fake_2.png"
+        }
+    }
+]</code></pre>
 
 </div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="populating-datacubes-with-labels">Populating Datacubes with Labels<a class="anchor-link" href="#Populating-Datacubes-with-Labels">&#182;</a></h2><p>Once we have create the icecube formatted JSON structure either for vector geometries or for raster labels, it is fairly straightforward to convert them to an <code>xr.Dataset</code> or append them to an already created <code>xr.Dataset</code></p>
 
 </div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
@@ -1335,15 +1492,47 @@ Data variables:
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Slice the stack at the pixel level. If the GRD stack are co-located images at different times, you are slicing by time at this point:</span>
-<span class="c1"># Let&#39;s pick the first pixel in range and aziumuth for all images in the stack. </span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># First thing first, some imports</span>
+<span class="kn">from</span> <span class="nn">icecube.bin.labels_cube.labels_cube_generator</span> <span class="kn">import</span> <span class="n">LabelsDatacubeGenerator</span>
+<span class="kn">from</span> <span class="nn">icecube.bin.config</span> <span class="kn">import</span> <span class="n">CubeConfig</span>
+<span class="kn">from</span> <span class="nn">icecube.bin.datacube</span> <span class="kn">import</span> <span class="n">Datacube</span>
+</pre></div>
 
-<span class="c1">#Check the shape of the stack again</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        </div>
+    </div>
 
-<span class="c1">#the stack depth is the first dimension of the array</span>
-<span class="n">pixel_time_series</span> <span class="o">=</span> <span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The time series for the pixel located to the pixel (1,1) is </span><span class="si">{</span><span class="n">pixel_time_series</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Let&#39;s create a Datacube from our labels.json file. For demo purposes, we will use only vector labels.</span>
+
+<span class="n">config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;json_config/&quot;</span><span class="p">)</span>
+<span class="n">default_config_fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config_dir</span><span class="p">,</span> <span class="s2">&quot;config_use_case_default.json&quot;</span><span class="p">)</span>
+
+<span class="n">raster_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;grd_stack&quot;</span><span class="p">)</span>
+
+<span class="n">dummy_vector_labels_fpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">resource_dir</span><span class="p">,</span> <span class="s2">&quot;labels/dummy_vector_labels.json&quot;</span>
+<span class="p">)</span>
+
+<span class="n">cc</span> <span class="o">=</span> <span class="n">CubeConfig</span><span class="p">()</span>
+<span class="n">product_type</span> <span class="o">=</span> <span class="s2">&quot;GRD&quot;</span>
+
+
+<span class="n">cc</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="n">default_config_fpath</span><span class="p">)</span>
+<span class="n">labels_datacube</span> <span class="o">=</span> <span class="n">LabelsDatacubeGenerator</span><span class="o">.</span><span class="n">build</span><span class="p">(</span>
+    <span class="n">cc</span><span class="p">,</span> <span class="n">product_type</span><span class="p">,</span> <span class="n">dummy_vector_labels_fpath</span><span class="p">,</span> <span class="n">raster_dir</span>
+<span class="p">)</span>
+
+<span class="n">labels_datacube</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">cube_save_path</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -1363,9 +1552,10 @@ Data variables:
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>(3, 10, 10)
-The time series for the pixel located to the pixel (1,1) is [508  81 525]
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>09/07/2021 05:28:38 PM - sar_datacube_metadata.py - [INFO] - Building the metadata from the folder /mnt/xor/ICEYE_PACKAGES/icecube/tests/resources/grd_stack using GRD
+processing rasters for labels cube: 100%|██████████| 3/3 [00:00&lt;00:00, 3634.58it/s]
+09/07/2021 05:28:38 PM - common_utils.py - [INFO] - create running time is 0.0163 seconds
 </pre>
 </div>
 </div>
@@ -1377,55 +1567,11 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The raw ICEYE image metadata for each image can be accessed using the method <code>get_metadata(attributes, datavars, cube_index)</code>or directly using attrs of the xarray.Dataset[data_vars]</p>
-<p>grd_datacube.xrdataset["intensity"].attrs will return a dict[str, list]</p>
-<ul>
-<li><code>key</code> represents the metadata key</li>
-<li><code>vlues</code> represents the values associated with each layer of the datacube - a missing value is represented by <code>None</code></li>
-</ul>
+<p>And that was it, we have a labels datacube generated! 🎉
+.
+For inspecting the elements of labels datacube, it is recommended to convert associated <code>xr.Dataset</code> to the <code>Datacube</code> core class, as it provides ready methods to process datacubes. More details on the <code>Datacube</code> core class be found in demo notebook:  <strong><a href="https://iceye-ltd.github.io/icecube/examples/Ex4_Datacube.ipynb">Ex4_Datacube</a></strong></p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># visualize all possibles values</span>
-<span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-
-        </div>
-    </div>
-
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>dict_keys([&#39;range_look_bandwidth&#39;, &#39;dc_estimate_coeffs&#39;, &#39;acquisition_mode&#39;, &#39;mean_earth_radius&#39;, &#39;coord_center&#39;, &#39;azimuth_looks&#39;, &#39;carrier_frequency&#39;, &#39;dc_estimate_poly_order&#39;, &#39;orbit_direction&#39;, &#39;velY&#39;, &#39;range_looks&#39;, &#39;product_level&#39;, &#39;avg_scene_height&#39;, &#39;heading&#39;, &#39;azimuth_spacing&#39;, &#39;incidence_angle_ground_range_origin&#39;, &#39;velZ&#39;, &#39;posX&#39;, &#39;range_spread_comp_flag&#39;, &#39;azimuth_look_bandwidth&#39;, &#39;velX&#39;, &#39;geo_ref_system&#39;, &#39;incidence_far&#39;, &#39;calibration_factor&#39;, &#39;applied_processing&#39;, &#39;total_processed_bandwidth_azimuth&#39;, &#39;dc_estimate_time_utc&#39;, &#39;spec_version&#39;, &#39;slant_range_to_first_pixel&#39;, &#39;incidence_angle_poly_order&#39;, &#39;chirp_duration&#39;, &#39;coord_first_far&#39;, &#39;mean_orbit_altitude&#39;, &#39;acquisition_end_utc&#39;, &#39;orbit_repeat_cycle&#39;, &#39;doppler_rate_poly_order&#39;, &#39;acquisition_prf&#39;, &#39;polarization&#39;, &#39;state_vector_time_utc&#39;, &#39;acquisition_start_utc&#39;, &#39;product_file&#39;, &#39;number_of_azimuth_samples&#39;, &#39;incidence_near&#39;, &#39;processing_prf&#39;, &#39;satellite_name&#39;, &#39;ant_elev_corr_flag&#39;, &#39;number_of_dc_estimations&#39;, &#39;coord_last_near&#39;, &#39;product_name&#39;, &#39;range_sampling_rate&#39;, &#39;azimuth_time_interval&#39;, &#39;product_type&#39;, &#39;area_or_point&#39;, &#39;incidence_center&#39;, &#39;orbit_absolute_number&#39;, &#39;grsr_zero_doppler_time&#39;, &#39;orbit_processing_level&#39;, &#39;grsr_coefficients&#39;, &#39;chirp_bandwidth&#39;, &#39;grsr_poly_order&#39;, &#39;zerodoppler_start_utc&#39;, &#39;incidence_angle_coefficients&#39;, &#39;window_function_range&#39;, &#39;azimuth_look_overlap&#39;, &#39;coord_first_near&#39;, &#39;grsr_ground_range_origin&#39;, &#39;tropo_range_delay&#39;, &#39;sample_precision&#39;, &#39;satellite_look_angle&#39;, &#39;orbit_relative_number&#39;, &#39;processor_version&#39;, &#39;incidence_angle_zero_doppler_time&#39;, &#39;posY&#39;, &#39;window_function_azimuth&#39;, &#39;coord_last_far&#39;, &#39;range_look_overlap&#39;, &#39;doppler_rate_coeffs&#39;, &#39;zerodoppler_end_utc&#39;, &#39;range_spacing&#39;, &#39;posZ&#39;, &#39;gcp_terrain_model&#39;, &#39;look_side&#39;, &#39;number_of_range_samples&#39;, &#39;number_of_state_vectors&#39;, &#39;processing_time&#39;])</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
@@ -1434,8 +1580,8 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># You can see the list of values a specific metadata</span>
-<span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">[</span><span class="s1">&#39;Intensity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;product_file&#39;</span><span class="p">]</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># We can see that returned object is an instance of class VectorLabels</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">labels_datacube</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -1458,9 +1604,7 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&#39;,
- &#39;ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif&#39;,
- &#39;ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&#39;]</pre>
+<pre>icecube.bin.labels_cube.vector_labels.VectorLabels</pre>
 </div>
 
 </div>
@@ -1477,56 +1621,9 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># If you know what you are looking for, you can directly use the`get_metadata(attr, var, index)` method</span>
-<span class="n">grd_datacube</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="s2">&quot;product_file&quot;</span><span class="p">,</span> <span class="s1">&#39;Intensity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-        </div>
-    </div>
-
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&#39;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="build-datacube-from-a-list-of-path">Build datacube from a list of path<a class="anchor-link" href="#Build-datacube-from-a-list-of-path">&#182;</a></h2><p>It's also possible to build a datacube from a list of different paths instead of a single local folder. For that, you will need to call the <code>build_from_list()</code> function instead of <code>build()</code>. The method will build your datacube taking into account only the files in your list. In the following example, we will reduce the inputs to only two images instead of three. Ensure that you are passing only .tif files.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
-    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># build the datacube composed of a stack of GRD</span>
-<span class="n">list_interesting_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">test_dir</span><span class="p">,</span> <span class="n">cur_path</span><span class="p">))</span> <span class="k">for</span> <span class="n">cur_path</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">test_dir</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">list_interesting_paths</span><span class="p">)</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># We can throw `labels_datacube.xrDataset` to Datacube core class to easily access useful operations on the cube</span>
+<span class="n">dc</span> <span class="o">=</span> <span class="n">Datacube</span><span class="p">()</span><span class="o">.</span><span class="n">set_xrdataset</span><span class="p">(</span><span class="n">labels_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dc</span><span class="o">.</span><span class="n">get_data_variables</span><span class="p">())</span>
 </pre></div>
 
         </div>
@@ -1547,7 +1644,7 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[PosixPath(&#39;/home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&#39;), PosixPath(&#39;/home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&#39;)]
+<pre>[&#39;Labels&#39;]
 </pre>
 </div>
 </div>
@@ -1559,13 +1656,16 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># build the datacube composed of a stack of GRD</span>
-<span class="n">grd_datacube</span> <span class="o">=</span> <span class="n">GRDDatacube</span><span class="o">.</span><span class="n">build_from_list</span><span class="p">(</span><span class="n">cube_config</span><span class="p">,</span> <span class="n">list_interesting_paths</span><span class="p">)</span>
+    <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Finally we can easily see what is inside our datacube easily for one of our products</span>
+<span class="n">labels_xrarray</span> <span class="o">=</span> <span class="n">dc</span><span class="o">.</span><span class="n">get_xrarray</span><span class="p">(</span><span class="s2">&quot;Labels&quot;</span><span class="p">)</span>
+<span class="n">POI</span> <span class="o">=</span> <span class="n">dc</span><span class="o">.</span><span class="n">get_all_products</span><span class="p">(</span><span class="n">labels_xrarray</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Associated labels with product-file: </span><span class="si">{}</span><span class="s2"> are </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">POI</span><span class="p">))</span>
+<span class="n">dc</span><span class="o">.</span><span class="n">get_product_values</span><span class="p">(</span><span class="n">POI</span><span class="p">,</span> <span class="n">labels_xrarray</span><span class="p">)</span>
 </pre></div>
 
         </div>
@@ -1585,50 +1685,63 @@ The time series for the pixel located to the pixel (1,1) is [508  81 525]
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>08/31/2021 10:41:21 AM - sar_datacube_metadata.py - [INFO] - Building the metadata from the list [PosixPath(&#39;/home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_2.tif&#39;), PosixPath(&#39;/home/adupeyrat/Documents/code/icecube/tests/resources/grd_stack/ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.tif&#39;)]
-processing rasters for cubes: 100%|██████████| 2/2 [00:00&lt;00:00, 139.33it/s]
-08/31/2021 10:41:21 AM - common_utils.py - [INFO] - create_from_list running time is 0.0329 seconds
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Associated labels with product-file: ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_1.tif are 
+
 </pre>
 </div>
 </div>
 
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
-    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grd_datacube</span><span class="o">.</span><span class="n">xrdataset</span><span class="o">.</span><span class="n">dims</span>
-</pre></div>
-
-        </div>
-    </div>
-
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>Frozen(SortedKeysDict({&#39;Azimuth&#39;: 10, &#39;Range&#39;: 10, &#39;Band&#39;: 2}))</pre>
+<pre>{&#39;objects&#39;: [{&#39;class&#39;: &#39;rand-b&#39;,
+   &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 0, &#39;xmax&#39;: 5, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 9, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 9, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 0, &#39;xmax&#39;: 9, &#39;ymax&#39;: 3}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 5, &#39;xmax&#39;: 6, &#39;ymax&#39;: 5}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 9, &#39;xmax&#39;: 2, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 7, &#39;xmax&#39;: 6, &#39;ymax&#39;: 7}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 5, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 3, &#39;xmax&#39;: 5, &#39;ymax&#39;: 4}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 5, &#39;xmax&#39;: 9, &#39;ymax&#39;: 5}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 0, &#39;ymin&#39;: 5, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 4, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 2, &#39;xmax&#39;: 5, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 2, &#39;xmax&#39;: 7, &#39;ymax&#39;: 6}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 1, &#39;xmax&#39;: 6, &#39;ymax&#39;: 2}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 5, &#39;xmax&#39;: 8, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 2, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 6, &#39;xmax&#39;: 9, &#39;ymax&#39;: 7}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 3, &#39;xmax&#39;: 6, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 3, &#39;xmax&#39;: 8, &#39;ymax&#39;: 3}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 3, &#39;xmax&#39;: 8, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 7, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 1, &#39;xmax&#39;: 2, &#39;ymax&#39;: 7}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 3, &#39;ymin&#39;: 7, &#39;xmax&#39;: 6, &#39;ymax&#39;: 7}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 1, &#39;ymin&#39;: 4, &#39;xmax&#39;: 3, &#39;ymax&#39;: 4}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 1, &#39;xmax&#39;: 7, &#39;ymax&#39;: 6}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 8, &#39;ymin&#39;: 4, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 3, &#39;xmax&#39;: 7, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 3, &#39;xmax&#39;: 9, &#39;ymax&#39;: 6}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 4, &#39;xmax&#39;: 5, &#39;ymax&#39;: 4}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 6, &#39;ymin&#39;: 7, &#39;xmax&#39;: 6, &#39;ymax&#39;: 7}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 4, &#39;ymin&#39;: 3, &#39;xmax&#39;: 5, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 5, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 8}},
+  {&#39;class&#39;: &#39;rand-c&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 9, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 9, &#39;ymin&#39;: 7, &#39;xmax&#39;: 9, &#39;ymax&#39;: 9}},
+  {&#39;class&#39;: &#39;rand-a&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 2, &#39;ymin&#39;: 2, &#39;xmax&#39;: 8, &#39;ymax&#39;: 7}},
+  {&#39;class&#39;: &#39;rand-b&#39;, &#39;bbox&#39;: {&#39;xmin&#39;: 7, &#39;ymin&#39;: 8, &#39;xmax&#39;: 7, &#39;ymax&#39;: 8}}]}</pre>
 </div>
 
 </div>
@@ -1640,31 +1753,13 @@ processing rasters for cubes: 100%|██████████| 2/2 [00:00&lt
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="writing-a-file-to-geotiff">Writing a file to GeoTiff<a class="anchor-link" href="#Writing-a-file-to-GeoTiff">&#182;</a></h2><p>Finally, save the datacube usint the <code>.to_file()</code> method of the <code>SarDatacube</code> object.
-The default format is <code>netCDF4</code> - this can be expanded if needed.</p>
+<p>Great, our vector geometries are preserved inside datacube. Similarly we can show it for our raster labels. We will leave it as an exercise for you to get your hands dirty on the code for that part.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
-    <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-    <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grd_datacube</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_fpath</span><span class="o">=</span><span class="s2">&quot;my_awesome_datacube_grd.nc&quot;</span><span class="p">)</span>
-</pre></div>
-
-        </div>
-    </div>
-
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>hyvää työtä!</p>
+<p><strong>Happy Coding :)</strong></p>
 
 </div>
 </div>
@@ -1690,7 +1785,7 @@ The default format is <code>netCDF4</code> - this can be expanded if needed.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
+        <a href="../Ex1_SARDatacube/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Ex 1 - SAR Datacube" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1699,20 +1794,20 @@ The default format is <code>netCDF4</code> - this can be expanded if needed.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Installation
+              Ex 1 - SAR Datacube
             </div>
           </div>
         </a>
       
       
         
-        <a href="../Ex2_SLC_input_output/" class="md-footer__link md-footer__link--next" aria-label="Next: Ex 2 - SLC Datacube I/O" rel="next">
+        <a href="../Ex3_CreatingDatacube/" class="md-footer__link md-footer__link--next" aria-label="Next: Ex3 - CreatingDatacube" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Ex 2 - SLC Datacube I/O
+              Ex3 - CreatingDatacube
             </div>
           </div>
           <div class="md-footer__button md-icon">
