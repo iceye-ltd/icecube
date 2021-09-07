@@ -24,7 +24,7 @@ We have included following notebooks so far:
 In order to provide you with a better understanding of how different components of `icecube` toolkit communicate with each other, we have included an architecture diagram as shown in Figure 1.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/iceye-ltd/icecube/update/docs/notebooks/assets/icecube_architecture_diagram.png?token=ACIXOQMPHXLZ4LQCY4VKRM3BEZQVK" width="800"/>
+<img src="https://raw.githubusercontent.com/iceye-ltd/icecube/main/assets/icecube_architecture_diagram.png?token=ACIXOQMPHXLZ4LQCY4VKRM3BEZQVK" width="800"/>
 </p>
 
 <i> Figure 1: Illustrates the architecture diagram of the icecube toolkit. An OOP-oriented architecture ensures a modular approach for the Python library. Low-level details are abstracted away from the users by “IceyeProcessGenerateCube” class. This makes it very easier for users to create cubes without worrying about the implementation details </i>
