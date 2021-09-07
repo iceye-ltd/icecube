@@ -7,15 +7,15 @@ The notebooks are tailored to demonstrate to users how to fully utilize the bene
 
 We have included following notebooks so far:
 
-- **[Ex1_SARDatacube](https://iceye-ltd.github.io/icecube/examples/Ex1_SARDatacube.ipynb)** demonstrates how datacubes can be created using ICEYE SAR products (GRD/SLC)
+- **[Ex1_SARDatacube](https://iceye-ltd.github.io/icecube/examples/Ex1_SARDatacube)** demonstrates how datacubes can be created using ICEYE SAR products (GRD/SLC)
 
-- **[Ex2_LabelsDatacube](https://iceye-ltd.github.io/icecube/examples/Ex2_LabelsDatacube.ipynb)** shows creating datacubes with ML annotations (raster/vector). This makese  ICEcubes* wholesome for machine learning where input data (X) and output (y) can be found under one umbrella. 
+- **[Ex2_LabelsDatacube](https://iceye-ltd.github.io/icecube/examples/Ex2_LabelsDatacube)** shows creating datacubes with ML annotations (raster/vector). This makese  ICEcubes* wholesome for machine learning where input data (X) and output (y) can be found under one umbrella. 
 
-- **[Ex3_CreatingDatacube](https://iceye-ltd.github.io/icecube/examples/Ex3_CreatingDatacube.ipynb)** walks user how to create datacubes using different methods available.  
+- **[Ex3_CreatingDatacube](https://iceye-ltd.github.io/icecube/examples/Ex3_CreatingDatacube)** walks user how to create datacubes using different methods available.  
 
-- **[Ex4_Datacube](https://iceye-ltd.github.io/icecube/examples/Ex4_Datacube.ipynb)** briefly describes how to use the `Datacube` class to easily read and process ICEYE datacubes
+- **[Ex4_Datacube](https://iceye-ltd.github.io/icecube/examples/Ex4_Datacube)** briefly describes how to use the `Datacube` class to easily read and process ICEYE datacubes
 
-- **[Ex5_Datacube_ML](https://iceye-ltd.github.io/icecube/examples/Ex5_Datacube_for_ML.ipynb)** demonstrates a machine learning example with PyTorch using ICEcubes 
+- **[Ex5_Datacube_ML](https://iceye-ltd.github.io/icecube/examples/Ex5_Datacube_for_ML)** demonstrates a machine learning example with PyTorch using ICEcubes 
 
 *For the sake of clarity, the term `icecube` refers to the toolkit and ICEcube refers to a datacube generated using ICEYE SAR data with the toolkit
 
