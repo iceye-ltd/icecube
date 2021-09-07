@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://iceye-ltd.github.io/icecube/overview/</loc>
+         <lastmod>2021-09-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://iceye-ltd.github.io/icecube/datacube/Datacube/</loc>
          <lastmod>2021-09-07</lastmod>
          <changefreq>daily</changefreq>
@@ -47,11 +52,6 @@
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/Ex5_Datacube_for_ML/</loc>
-         <lastmod>2021-09-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://iceye-ltd.github.io/icecube/examples/Overview/</loc>
          <lastmod>2021-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>

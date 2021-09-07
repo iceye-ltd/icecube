@@ -260,7 +260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -311,13 +311,6 @@
   
     <nav class="md-nav" aria-label="Creating  a Datacube from GRDs">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#config" class="md-nav__link">
-    Config
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#grddatacube-object" class="md-nav__link">
@@ -523,13 +516,6 @@
   
     <nav class="md-nav" aria-label="Creating  a Datacube from GRDs">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#config" class="md-nav__link">
-    Config
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#grddatacube-object" class="md-nav__link">
@@ -1195,28 +1181,7 @@ all of MD as it is not optimized for dense, information rich UIs.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The first step is to create or edit the config file, which is a json file containing the parameters that you want to modify for the datacube construction.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="config">Config<a class="anchor-link" href="#Config">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Configuring datacubes by a .json file provides a convenient way for the user to build datacubes from a monolithic directory of SAR images without worrying about the manual selection of SAR data. You can dump all SAR images into a common directory and slice the information per your need by specifying the date range. Seasonality effects with the datacubes can also be analyzed by slicing information for the required dates.  Be it an event of interest of a short time period or repeated nature, you can configure the datacubes to suit your application needs.</p>
-<p>The following is a brief description of the parameters that can be passed to configure datacubes:</p>
-<ul>
-<li><code>start_date</code>: The date from which the SAR images will be considered for the stack (format: int/str %Y%M%D)</li>
-<li><code>end_date</code>: The last date of the image stack (format: int/str %Y%M%D)</li>
-<li><code>min_incidence_angle</code>: The lowest incidence angle in the image stack (format: float/int)</li>
-<li><code>max_incidence_angle</code>:  The highest incidence angle in the image stack (format: float/int)</li>
-<li><code>temporal_resolution</code>: The observation interval (number of days) to be considered between the images in the stack (format: float/int)</li>
-<li><code>temporal_overlap</code>: To decide whether images with the same date should be considered (format: bool/int)</li>
-</ul>
-<p>If the default user configuration is used, all images inside the directory are considered for building the datacubes and no pruning on dates or incidence angles is performed.</p>
+<p>Datacubes can be easily configured using different parameters inside JSON configuration file. <a href="https://iceye-ltd.github.io/icecube/examples/Ex3_CreatingDatacube">Ex3_CreatingDatacube</a> talks about cube configuration in detail. For sake of simplicity, we will use default cube configuration here for generating SAR datacubes.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -1230,7 +1195,7 @@ all of MD as it is not optimized for dense, information rich UIs.
     <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">cube_config</span> <span class="o">=</span> <span class="n">CubeConfig</span><span class="p">()</span>
 
 <span class="c1"># If you want to load config parameters;</span>
-<span class="c1">#cube_config.load_config(cube_config_path)</span>
+<span class="c1"># cube_config.load_config(cube_config_path)</span>
 
 <span class="c1"># Example json:</span>
 <span class="c1">#{</span>
@@ -2547,7 +2512,7 @@ The default format is <code>netCDF4</code> - this can be expanded if needed.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../Overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
+        <a href="../../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
