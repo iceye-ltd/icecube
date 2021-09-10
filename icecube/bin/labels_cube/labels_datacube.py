@@ -83,7 +83,9 @@ class LabelsDatacube:
             # We do have images and we will fetch the relevant labels for that
             else:
                 # Get the full path
-                logger.debug("Working on {}".format(os.path.basename(df_row["product_fpath"])))
+                logger.debug(
+                    "Working on {}".format(os.path.basename(df_row["product_fpath"]))
+                )
 
                 product_file = os.path.basename(df_row["product_fpath"])
                 asset_labels = self.get_product_labels_from_json(product_file)
@@ -101,7 +103,7 @@ class LabelsDatacube:
             xdataset_seq,
             dim=pd.to_datetime(metadata_df[NAME_BAND]),
             data_vars="all",
-            combine_attrs="drop"
+            combine_attrs="drop",
         )
         super_dict = self.concat_metadata(list_metadata)
 
@@ -155,7 +157,9 @@ class LabelsDatacube:
                 row["product_file"] not in json_products
                 and os.path.basename(row["product_fpath"]) not in json_products
             ):
-                metadata_df.loc[indx, metadata_df.columns != 'acquisition_date'] = np.nan
+                metadata_df.loc[
+                    indx, metadata_df.columns != "acquisition_date"
+                ] = np.nan
 
         return metadata_df
 
