@@ -38,13 +38,9 @@ def create_run_time_masks_labels():
     """
     from icecube.bin.labels_cube.create_json_labels import CreateLabels
 
-    masks_names = [
-        "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.png"
-        ]
+    masks_names = ["ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.png"]
 
-    raster_names = [
-        "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif"
-    ]
+    raster_names = ["ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif"]
 
     masks_fpaths = [os.path.join(masks_raster_dir, fpath) for fpath in masks_names]
 
@@ -65,12 +61,21 @@ def test_xrdatasets_merge_for_raster_labels():
     create_run_time_masks_labels()
 
     # We will create a copy of a raster to test the pipeline for same metadata
-    raster_to_copy = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif")
-    copied_raster = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0_copy.tif")
+    raster_to_copy = os.path.join(
+        grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif"
+    )
+    copied_raster = os.path.join(
+        grd_raster_dir,
+        "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0_copy.tif",
+    )
     shutil.copy(raster_to_copy, copied_raster)
 
-    def_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case_default.json")
-    custom_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case6.json")
+    def_cube_config_fpath = os.path.join(
+        res_abspath, "json_config/config_use_case_default.json"
+    )
+    custom_cube_config_fpath = os.path.join(
+        res_abspath, "json_config/config_use_case6.json"
+    )
     cube_configs_seq = [def_cube_config_fpath, custom_cube_config_fpath]
 
     create_temporary_cube_dir(cube_save_dir)
@@ -83,17 +88,26 @@ def test_xrdatasets_merge_for_raster_labels():
         datacube.to_file(cube_save_fpath)
 
     delete_temporary_cube_dir(cube_save_dir)
-    
+
 
 def test_xrdatasets_merge_for_vector_labels():
-    
+
     # We will create a copy of a raster to test the pipeline for same metadata
-    raster_to_copy = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif")
-    copied_raster = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0_copy.tif")
+    raster_to_copy = os.path.join(
+        grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif"
+    )
+    copied_raster = os.path.join(
+        grd_raster_dir,
+        "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0_copy.tif",
+    )
     shutil.copy(raster_to_copy, copied_raster)
 
-    def_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case_default.json")
-    custom_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case6.json")
+    def_cube_config_fpath = os.path.join(
+        res_abspath, "json_config/config_use_case_default.json"
+    )
+    custom_cube_config_fpath = os.path.join(
+        res_abspath, "json_config/config_use_case6.json"
+    )
     cube_configs_seq = [def_cube_config_fpath, custom_cube_config_fpath]
 
     create_temporary_cube_dir(cube_save_dir)
