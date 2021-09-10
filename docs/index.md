@@ -2,7 +2,7 @@
 
 <a href='http://www.iceye.com'>ICEYE</a> was the first commerical satellite company to miniaturize SAR technology. We have since launched 14 satellites (as of 2021) and continue to grow this constellation. But of course, a large constellation means that we have a lot of data to handle and explore. SAR can be complicated with processing overhead, as the radar phenomenology can require specific expertise.
 
-From an artificial intelligence (AI) and machine learning (ML) perspective, data scientists and engineers have barely scratched the surface with SAR-based implementations. Through a recent initiative with the [European Space Agency (ESA) Φ-Lab](https://philab.phi.esa.int/), ICEYE has been able to explore tool development to expedite SAR imagery exploration. 
+From an artificial intelligence (AI) and machine learning (ML) perspective, data scientists and engineers have barely scratched the surface with SAR-based implementations. Through a recent initiative with the [European Space Agency (ESA) Φ-lab](https://philab.phi.esa.int/), ICEYE has been able to explore tool development to expedite SAR imagery exploration. 
 
 We were presented with this opportunity to begin creating open source utilities to reduce the barrier to entry into SAR-based machine learning applications. As we are keen to build AI/ML applications to handle heavy image processing and scalable analytics, we have focused our first release on creating a SAR datacube structure to handle time-series SAR as a function of range, azimuth, intensity, and complex radar signal.
 
