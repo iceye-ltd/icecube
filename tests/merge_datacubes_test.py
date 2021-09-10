@@ -8,7 +8,7 @@ import shutil
 from pathlib import Path
 from icecube.bin.generate_cube import IceyeProcessGenerateCube
 
- 
+
 res_abspath = os.path.join(Path(__file__).parent, "resources")
 
 grd_raster_dir = os.path.join(res_abspath, "grd_stack")
@@ -23,8 +23,8 @@ cube_save_fpath = os.path.join(cube_save_dir, "temp.nc")
 # We will create a copy of a raster to test the pipeline for same metadata
 
 raster_to_copy = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0.tif")
-copied_raster = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0_copy.tif") 
-    
+copied_raster = os.path.join(grd_raster_dir, "ICEYE_GRD_54549_20210427T215124_hollow_10x10pixels_fake_0_copy.tif")
+
 shutil.copy(raster_to_copy, copied_raster)
 
 
@@ -71,18 +71,18 @@ def create_run_time_masks_labels():
 
 def test_xrdatasets_merge_for_raster_labels():
     create_run_time_masks_labels()
-    
+
     def_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case_default.json")
-    custom_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case6.json") 
+    custom_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case6.json")
     cube_configs_seq = [def_cube_config_fpath, custom_cube_config_fpath]
 
     create_temporary_cube_dir(cube_save_dir)
-    
+
     for cube_config_fpath in cube_configs_seq:
         datacube = IceyeProcessGenerateCube.create_cube(
             grd_raster_dir, cube_config_fpath, masks_labels_fpath
         )
-        
+
         datacube.to_file(cube_save_fpath)
 
     delete_temporary_cube_dir(cube_save_dir)
@@ -92,16 +92,16 @@ def test_xrdatasets_merge_for_vector_labels():
     create_run_time_masks_labels()
 
     def_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case_default.json")
-    custom_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case6.json") 
+    custom_cube_config_fpath = os.path.join(res_abspath, "json_config/config_use_case6.json")
     cube_configs_seq = [def_cube_config_fpath, custom_cube_config_fpath]
 
     create_temporary_cube_dir(cube_save_dir)
-    
+
     for cube_config_fpath in cube_configs_seq:
         datacube = IceyeProcessGenerateCube.create_cube(
             grd_raster_dir, cube_config_fpath, vector_labels_fpath
         )
-        
+
         datacube.to_file(cube_save_fpath)
 
     delete_temporary_cube_dir(cube_save_dir)
