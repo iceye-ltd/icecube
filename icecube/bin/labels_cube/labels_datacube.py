@@ -48,7 +48,6 @@ class LabelsDatacube:
         assert_metadata_exists(metadata_object.metadata_df)
         self.json_labels = self.read_json(labels_fpath)
         metadata_df = self.replace_unlabelled_bands_by_NaNs(metadata_object.metadata_df)
-
         self.mask_datatype = self.get_mask_dtype(metadata_df)
         (
             self.max_shape_azimuth,
@@ -73,7 +72,6 @@ class LabelsDatacube:
                 desc="processing rasters for labels cube",
             )
         ):
-
             # We don't have image for this timestamp - we create an empty array to cover this date.
             if pd.isnull(df_row["product_fpath"]):
                 dummy_xdataset, dummy_metadata = self.compute_dummy_xrdataset()
@@ -148,15 +146,11 @@ class LabelsDatacube:
         :param metadata_df: dataframe object containing metadata for rasters in the directory
         returns pd.df with NaNs filled for unavailable rows
         """
-        metadata_df
         json_products = [json_dict["product_file"] for json_dict in self.json_labels]
         for indx, row in metadata_df.iterrows():
-            if pd.isnull(row["product_file"]) or pd.isnull(row["product_fpath"]):
+            if pd.isnull(row["product_fpath"]):
                 continue
-            if (
-                row["product_file"] not in json_products
-                and os.path.basename(row["product_fpath"]) not in json_products
-            ):
+            elif os.path.basename(row["product_fpath"]) not in json_products:
                 metadata_df.loc[
                     indx, metadata_df.columns != "acquisition_date"
                 ] = np.nan
