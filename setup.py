@@ -44,9 +44,15 @@ dev_requirements = [
     "mkdocstrings>=0.3.2",
 ]
 
+ml_requirements = [
+    "xbatcher",
+    "torch",
+    "torchvision",
+]
+
 setup(
     name="icecube",
-    version="1.0.0",
+    version="1.1.0",
     author="Muhammad Irfan Ali, Arnaud Dupeyrat",
     author_email="irfan.ali@iceye.com, arnaud.dupeyrat@iceye.fi",
     description="AI oriented datacube generation using ICEYE data",
@@ -54,7 +60,7 @@ setup(
     keywords="data cubes, ML cubes, iceye cubes",
     packages=find_packages(),
     install_requires=requirements,
-    extras_require={"dev": dev_requirements},
+    extras_require={"dev": dev_requirements, "ml": ml_requirements},
     long_description=read("Readme.md"),
     project_urls={
         "Bug Tracker": "",
