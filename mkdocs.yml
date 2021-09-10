@@ -28,7 +28,7 @@ nav:
 
   - Implementation Details:
     - Datacube: datacube/Datacube.md
-
+  - Release Notes: release_notes.md
   - Contributing: contribute.md
 
 markdown_extensions:
