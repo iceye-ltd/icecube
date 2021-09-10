@@ -11,14 +11,14 @@
       
       
       
-        <link rel="canonical" href="https://iceye-ltd.github.io/icecube/examples/">
+        <link rel="canonical" href="https://iceye-ltd.github.io/icecube/release_notes/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
-        <title>Examples - ICEcube Documentation</title>
+        <title>Release Notes - ICEcube Documentation</title>
       
     
     
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#examples" class="md-skip">
+        <a href="#version-110" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Examples
+              Release Notes
             
           </span>
         </div>
@@ -270,7 +270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Ex1_SARDatacube/" class="md-nav__link">
+      <a href="../examples/Ex1_SARDatacube/" class="md-nav__link">
         Ex 1 - SAR Datacube
       </a>
     </li>
@@ -282,7 +282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Ex2_LabelsDatacube/" class="md-nav__link">
+      <a href="../examples/Ex2_LabelsDatacube/" class="md-nav__link">
         Ex2 - Labels Datacube
       </a>
     </li>
@@ -294,7 +294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Ex3_CreatingDatacube/" class="md-nav__link">
+      <a href="../examples/Ex3_CreatingDatacube/" class="md-nav__link">
         Ex3 - CreatingDatacube
       </a>
     </li>
@@ -306,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Ex4_Datacube/" class="md-nav__link">
+      <a href="../examples/Ex4_Datacube/" class="md-nav__link">
         Ex 4 - Datacube
       </a>
     </li>
@@ -318,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="Ex5_Datacube_for_ML/" class="md-nav__link">
+      <a href="../examples/Ex5_Datacube_for_ML/" class="md-nav__link">
         Ex 5 - Datacube for ML
       </a>
     </li>
@@ -379,11 +379,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../release_notes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Release Notes
       </a>
+      
     </li>
   
 
@@ -422,42 +432,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-sar-datacube-input-output" class="md-nav__link">
-    1. SAR Datacube Input / Output
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-labels" class="md-nav__link">
-    3 . Labels
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-datacube-core-class" class="md-nav__link">
-    4 . Datacube Core Class
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-datacube-for-ml" class="md-nav__link">
-    5 . Datacube for ML
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -468,22 +442,51 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/iceye-ltd/icecube/edit/main/docs/examples.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/iceye-ltd/icecube/edit/main/docs/release_notes.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="examples">Examples</h1>
-<p>Here are some jupyter notebook examples showing how to use the <code>icecube</code> library to read and write GRD and SLC datacubes.</p>
-<p>For the v0 (this version) of the library, the images must be coregistered and have the same shape.</p>
-<h2 id="1-sar-datacube-input-output">1. <a href="../../icecube/docs/examples/Ex1_SAR_input_output.ipynb">SAR Datacube Input / Output</a></h2>
-<p>This example shows how to handle I/O through <code>GRDDatacube.build()</code> and <code>SLCDatacube.build()</code></p>
-<h2 id="3-labels">3 . <a href="../../icecube/docs/examples/Ex3_Labels.ipynb">Labels </a></h2>
-<p>This example shows how to create a datacube of training labels</p>
-<h2 id="4-datacube-core-class">4 . <a href="../../icecube/docs/examples/Ex4_Datacube.ipynb">Datacube Core Class </a></h2>
-<p>This example shows the <code>Datacube</code> class to process icecubes</p>
-<h2 id="5-datacube-for-ml">5 . <a href="../../icecube/docs/examples/Ex5_Datacube_ML.ipynb">Datacube for ML </a></h2>
-<p>This example shows how to use the <code>Datacube</code> class in an ML pipeline.</p>
+                <h1 id="version-110">version 1.1.0</h1>
+<p>Major changes in the second release <code>1.1.0</code> include: </p>
+<ul>
+<li>
+<p>support added to create datacubes with any SAR product (as long as rasterio I/O supported) with (no to) limited cube configuration</p>
+</li>
+<li>
+<p>time coordinates added to <code>xr.Dataset</code> of labels datacube   </p>
+</li>
+<li>
+<p>datacube can be created by providing labels for subset of stack; previously for each raster, a label had to be specified</p>
+</li>
+<li>
+<p>changes related to documentation include :</p>
+<ul>
+<li>notebooks overview details added   </li>
+<li>GRD and SLC notebooks merged into a single SARDatacube notebook  </li>
+<li>Ex3-CreatingDatacube added with details on CreatingDatacubes and CubeConfiguration</li>
+</ul>
+</li>
+</ul>
+<h1 id="version-100">version 1.0.0</h1>
+<p>This is the first public release of the github repository that includes</p>
+<ul>
+<li>
+<p>creating datacubes with ICEYE L1 products (GRD/SLC)</p>
+</li>
+<li>
+<p>creating datacubes with labels (raster/vector)</p>
+</li>
+<li>
+<p>configuring datacubes using a JSON file for time, incidence angle and temporal resolution</p>
+</li>
+<li>
+<p>dask support to create massive datacubes</p>
+</li>
+<li>
+<p>extensive mkdocs documentation to get you easily started with the repository</p>
+</li>
+</ul>
                 
               
               
@@ -499,6 +502,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../datacube/Datacube/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Datacube" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Datacube
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../contribute/" class="md-footer__link md-footer__link--next" aria-label="Next: Contributing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Contributing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -2,87 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://iceye-ltd.github.io/icecube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/contribute/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/installation/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/overview/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://iceye-ltd.github.io/icecube/release_notes/</loc>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/datacube/Datacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/Ex1_SARDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/Ex2_LabelsDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/Ex3_CreatingDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/Ex4_Datacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/examples/Ex5_Datacube_for_ML/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/labelscube/LabelsDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/labelscube/RasterLabels/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/labelscube/VectorLabels/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/sarcube/GRDDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/sarcube/SARDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://iceye-ltd.github.io/icecube/sarcube/SLCDatacube/</loc>
-         <lastmod>2021-09-07</lastmod>
+         <lastmod>2021-09-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

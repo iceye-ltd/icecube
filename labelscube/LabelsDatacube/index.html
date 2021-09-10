@@ -381,6 +381,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../../release_notes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../contribute/" class="md-nav__link">
         Contributing
       </a>
@@ -760,9 +775,8 @@ where keys are superset of dict keys from individual product-files
             <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;processing rasters for labels cube&quot;</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">):</span>
-
         <span class="c1"># We don&#39;t have image for this timestamp - we create an empty array to cover this date.</span>
-        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">]):</span>
             <span class="n">dummy_xdataset</span><span class="p">,</span> <span class="n">dummy_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_dummy_xrdataset</span><span class="p">()</span>
             <span class="n">xdataset_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dummy_xdataset</span><span class="p">)</span>
             <span class="n">list_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dummy_metadata</span><span class="p">)</span>
@@ -770,7 +784,9 @@ where keys are superset of dict keys from individual product-files
         <span class="c1"># We do have images and we will fetch the relevant labels for that</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Get the full path</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Working on </span><span class="si">{</span><span class="n">df_row</span><span class="o">.</span><span class="n">product_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">&quot;Working on </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">]))</span>
+            <span class="p">)</span>
 
             <span class="n">product_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">])</span>
             <span class="n">asset_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_product_labels_from_json</span><span class="p">(</span><span class="n">product_file</span><span class="p">)</span>
@@ -781,8 +797,14 @@ where keys are superset of dict keys from individual product-files
             <span class="n">list_metadata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_metadata</span><span class="p">)</span>
             <span class="n">xdataset_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_xdataset</span><span class="p">)</span>
 
+    <span class="c1"># Add TIME coordinates to the datacube as well.</span>
+    <span class="n">metadata_df</span><span class="p">[</span><span class="n">NAME_BAND</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata_df</span><span class="p">[</span><span class="s2">&quot;acquisition_date&quot;</span><span class="p">]</span>
+
     <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-        <span class="n">xdataset_seq</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">NAME_BAND</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span>
+        <span class="n">xdataset_seq</span><span class="p">,</span>
+        <span class="n">dim</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">metadata_df</span><span class="p">[</span><span class="n">NAME_BAND</span><span class="p">]),</span>
+        <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+        <span class="n">combine_attrs</span><span class="o">=</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">super_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">concat_metadata</span><span class="p">(</span><span class="n">list_metadata</span><span class="p">)</span>
 
@@ -947,6 +969,7 @@ Therefore, it is necessary to prune out fields from metadata_df.
 
       <p>A user can only provide labels for certain bands in the cube. In such a case, all unlabelled
 bands/rasters metadata fields are replaced with NaNs.
+Please note that "acquisition_date" columns are retained as values are used for xarray COORDs
 :param metadata_df: dataframe object containing metadata for rasters in the directory
 returns pd.df with NaNs filled for unavailable rows</p>
 
@@ -958,18 +981,18 @@ returns pd.df with NaNs filled for unavailable rows</p>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A user can only provide labels for certain bands in the cube. In such a case, all unlabelled</span>
 <span class="sd">    bands/rasters metadata fields are replaced with NaNs.</span>
+<span class="sd">    Please note that &quot;acquisition_date&quot; columns are retained as values are used for xarray COORDs</span>
 <span class="sd">    :param metadata_df: dataframe object containing metadata for rasters in the directory</span>
 <span class="sd">    returns pd.df with NaNs filled for unavailable rows</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">json_products</span> <span class="o">=</span> <span class="p">[</span><span class="n">json_dict</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">json_dict</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_labels</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">indx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">metadata_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">])</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">]):</span>
             <span class="k">continue</span>
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="n">row</span><span class="p">[</span><span class="s2">&quot;product_file&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">json_products</span>
-            <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">])</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">json_products</span>
-        <span class="p">):</span>
-            <span class="n">metadata_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;product_fpath&quot;</span><span class="p">])</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">json_products</span><span class="p">:</span>
+            <span class="n">metadata_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="n">indx</span><span class="p">,</span> <span class="n">metadata_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s2">&quot;acquisition_date&quot;</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
     <span class="k">return</span> <span class="n">metadata_df</span>
 </code></pre></div>
