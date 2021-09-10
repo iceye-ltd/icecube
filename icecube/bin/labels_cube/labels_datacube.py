@@ -98,9 +98,9 @@ class LabelsDatacube:
         metadata_df[NAME_BAND] = metadata_df["acquisition_date"]
 
         ds = xr.concat(
-            xdataset_seq, 
-            dim=pd.to_datetime(metadata_df[NAME_BAND]), 
-            data_vars="all", 
+            xdataset_seq,
+            dim=pd.to_datetime(metadata_df[NAME_BAND]),
+            data_vars="all",
             combine_attrs="drop"
         )
         super_dict = self.concat_metadata(list_metadata)
@@ -259,4 +259,3 @@ class LabelsDatacube:
             raise Exception("Empty xr.Dataset passed for writing")
 
         self.xrdataset.to_netcdf(output_fpath, mode="w", format=format)
-
