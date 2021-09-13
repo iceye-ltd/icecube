@@ -186,7 +186,7 @@ def _parse_data_row(metadata, variables):
                 metadata_row["acquisition_date"] = np.nan
                 metadata_row["acquisition_time"] = np.nan
 
-        elif variable == "acquisition_time":
+        elif variable == "acquisition_time" or variable == "product_fpath":
             pass
 
         else:

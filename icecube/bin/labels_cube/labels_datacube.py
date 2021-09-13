@@ -48,7 +48,6 @@ class LabelsDatacube:
         assert_metadata_exists(metadata_object.metadata_df)
         self.json_labels = self.read_json(labels_fpath)
         metadata_df = self.replace_unlabelled_bands_by_NaNs(metadata_object.metadata_df)
-
         self.mask_datatype = self.get_mask_dtype(metadata_df)
         (
             self.max_shape_azimuth,
@@ -73,9 +72,8 @@ class LabelsDatacube:
                 desc="processing rasters for labels cube",
             )
         ):
-
             # We don't have image for this timestamp - we create an empty array to cover this date.
-            if pd.isnull(df_row["product_file"]):
+            if pd.isnull(df_row["product_fpath"]):
                 dummy_xdataset, dummy_metadata = self.compute_dummy_xrdataset()
                 xdataset_seq.append(dummy_xdataset)
                 list_metadata.append(dummy_metadata)
@@ -83,7 +81,9 @@ class LabelsDatacube:
             # We do have images and we will fetch the relevant labels for that
             else:
                 # Get the full path
-                logger.debug(f"Working on {df_row.product_file}")
+                logger.debug(
+                    "Working on {}".format(os.path.basename(df_row["product_fpath"]))
+                )
 
                 product_file = os.path.basename(df_row["product_fpath"])
                 asset_labels = self.get_product_labels_from_json(product_file)
@@ -94,8 +94,14 @@ class LabelsDatacube:
                 list_metadata.append(label_metadata)
                 xdataset_seq.append(label_xdataset)
 
+        # Add TIME coordinates to the datacube as well.
+        metadata_df[NAME_BAND] = metadata_df["acquisition_date"]
+
         ds = xr.concat(
-            xdataset_seq, dim=NAME_BAND, data_vars="all", combine_attrs="drop"
+            xdataset_seq,
+            dim=pd.to_datetime(metadata_df[NAME_BAND]),
+            data_vars="all",
+            combine_attrs="drop",
         )
         super_dict = self.concat_metadata(list_metadata)
 
@@ -136,18 +142,18 @@ class LabelsDatacube:
         """
         A user can only provide labels for certain bands in the cube. In such a case, all unlabelled
         bands/rasters metadata fields are replaced with NaNs.
+        Please note that "acquisition_date" columns are retained as values are used for xarray COORDs
         :param metadata_df: dataframe object containing metadata for rasters in the directory
         returns pd.df with NaNs filled for unavailable rows
         """
         json_products = [json_dict["product_file"] for json_dict in self.json_labels]
         for indx, row in metadata_df.iterrows():
-            if pd.isnull(row["product_file"]) or pd.isnull(row["product_fpath"]):
+            if pd.isnull(row["product_fpath"]):
                 continue
-            if (
-                row["product_file"] not in json_products
-                and os.path.basename(row["product_fpath"]) not in json_products
-            ):
-                metadata_df.loc[indx, :] = np.nan
+            elif os.path.basename(row["product_fpath"]) not in json_products:
+                metadata_df.loc[
+                    indx, metadata_df.columns != "acquisition_date"
+                ] = np.nan
 
         return metadata_df
 

@@ -13,7 +13,7 @@ We recommend that you create a Conda environment to keep your projects organized
 Perform the following steps to install the ICEcube library.
 
 ``` 
-git clone git@github.com:iceye-ltd/icecube.git 
+git clone https://github.com/iceye-ltd/icecube.git 
 cd icecube
 conda env create -f environment.yml
 conda activate icecube_env 

@@ -5,7 +5,7 @@ The datacubes stack SAR time-series images in range and azimuth and can preserve
 
 ![alt text](https://github.com/iceye-ltd/icecube/blob/main/assets/icecube.png)
 
->This work is sponsored by <a href='https://philab.phi.esa.int/'>ESA Φ-Lab</a> as part of the AI4SAR initiative.
+>This work is sponsored by <a href='https://philab.phi.esa.int/'>ESA Φ-lab</a> as part of the AI4SAR initiative.
 
 <br>
 
