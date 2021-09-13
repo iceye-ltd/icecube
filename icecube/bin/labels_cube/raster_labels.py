@@ -103,14 +103,14 @@ class RasterLabels(LabelsDatacube):
 
     def get_mask_dtype(self, metadata_df):
         index_master = metadata_df.number_of_azimuth_samples.first_valid_index()
-        master_fproduct = metadata_df.iloc[index_master]["product_file"]
-        mask_fpath = self.get_mask_fpath(master_fproduct)
+        master_fpath = metadata_df.iloc[index_master]["product_fpath"]
+        mask_fpath = self.get_mask_fpath(os.path.basename(master_fpath))
         return str(rasterio.open(mask_fpath).read(1).dtype)
 
     def get_mask_shape(self, metadata_df):
         index_master = metadata_df.number_of_azimuth_samples.first_valid_index()
-        master_fproduct = metadata_df.iloc[index_master]["product_file"]
-        mask_fpath = self.get_mask_fpath(master_fproduct)
+        master_fpath = metadata_df.iloc[index_master]["product_fpath"]
+        mask_fpath = self.get_mask_fpath(os.path.basename(master_fpath))
         return str(rasterio.open(mask_fpath).read(1).dtype)
 
 
