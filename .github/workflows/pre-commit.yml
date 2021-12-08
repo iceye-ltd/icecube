@@ -18,12 +18,12 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     steps:
-    # no need exept if we decide to depend on the iceye_io
-    #  - uses: webfactory/ssh-agent@v0.5.1
-    #    with:
-    #      ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - uses: actions/checkout@v2
+        with:
+          python-version: '3.8'
       - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
       - run: |
           pip install invoke
           inv setup
