@@ -328,10 +328,14 @@ def read_SLC_metadata(h5_io):
                 meta_dict[key] = np.array(h5_meta_val[()])
 
     # RPCs are nested under "RPC/" in the h5 thus need to be parsed in a specific manner
-    RPC_source = h5_io["RPC"]
-    meta_dict["RPC"] = parse_slc_rpc_to_meta_dict(
-        RPC_source=RPC_source, meta_dict=meta_dict
-    )
+    if "RPC" in h5_io:
+        RPC_source = h5_io["RPC"]
+        meta_dict["RPC"] = parse_slc_rpc_to_meta_dict(
+            RPC_source=RPC_source, meta_dict=meta_dict
+        )
+    else:
+        meta_dict["RPC"] = None
+        warnings.warn("RPC information is missing from the raster, setting to None")
 
     return meta_dict
 
