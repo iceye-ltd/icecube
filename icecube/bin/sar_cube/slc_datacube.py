@@ -208,10 +208,13 @@ class SLCDatacube(SARDatacube):
                     meta_dict[key] = np.array_str(np.array(h5_meta_val[()]))
 
                     # RPCs are nested under "RPC/" in the h5 thus need to be parsed in a specific manner
-        RPC_source = h5f["RPC"]
+        if "RPC" in h5f:
+            RPC_source = h5f["RPC"]
 
-        for key, val in RPC_source.items():
-            meta_dict[f"RPC_{key}"] = np.array(val, dtype=np.float32)
+            for key, val in RPC_source.items():
+                meta_dict[f"RPC_{key}"] = np.array(val, dtype=np.float32)
+        else:
+            meta_dict["RPC"] = np.array(None, dtype=np.float32)
 
         return meta_dict
 

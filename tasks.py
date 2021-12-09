@@ -6,7 +6,7 @@ Docker specific tasks are prefixed with a d. docker run > drun
 import os
 from invoke import task
 
-PYTEST = "python3 -m pytest"
+PYTEST = "python3.8 -m pytest"
 PYTEST_COVERAGE = "-m pytest"
 PYTEST_FLAGS = "--color yes --durations 3 -ra --failed-first -x"
 

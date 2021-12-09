@@ -52,7 +52,7 @@ ml_requirements = [
 
 setup(
     name="icecube",
-    version="1.1.0",
+    version="1.1.1",
     author="Muhammad Irfan Ali, Arnaud Dupeyrat",
     author_email="irfan.ali@iceye.com, arnaud.dupeyrat@iceye.fi",
     description="AI oriented datacube generation using ICEYE data",
